@@ -21,11 +21,13 @@
 
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">Edit User {{$user->id}}</h3>
+                <h3 class="card-title">Edit User {{$user->id}} Form</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                <form>
+                <form method="POST" action="{{ route('users.update',$user->id) }}">
+                    @method('PUT')
+                    @csrf
                     <div class="row">
                         <div class="col-sm-6">
                             <!-- text input -->
@@ -47,13 +49,13 @@
                             <!-- text input -->
                             <div class="form-group">
                                 <label>Password</label>
-                                <input type="password" id="password" name="password" class="form-control" value="{{$user->password}}">
+                                <input type="password" id="password" name="password" class="form-control" >
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Confirm Password</label>
-                                <input type="password" id="password_confirmation" name="confirm_password" class="form-control" value="{{$user->password}}">
+                                <input type="password" id="password_confirmation" name="confirm_password" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -63,7 +65,7 @@
                             <input type='checkbox' id='toggle' value='0' onchange='togglePassword(this);'>&nbsp; <span id='toggleText'>Show Password</span></td>
                         </div>
                         <div class="col-sm-6">
-                            <input type="submit" class="btn btn-info text-white" value="Save">
+                            <input type="submit" class="btn btn-info text-white" value="Save" id="save">
                         </div>
                     </div>
                 </form>
@@ -90,6 +92,13 @@
                         $("#toggleText").text("Show");
                     }
 
+                });
+
+                $('#save').click(function (event){
+                    if($("#password").val()!=$("#password_confirmation").val()){
+                        alert('password and confirm password doesnot match');
+                        event.preventDefault();
+                    }
                 });
             });
         </script>

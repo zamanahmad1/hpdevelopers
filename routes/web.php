@@ -18,9 +18,14 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
+//for users
 Route::Resource('users', App\Http\Controllers\Users\UserController::class);
 Route::put('users/restore/{id}',[App\Http\Controllers\Users\UserController::class, 'restore']);
+//for roles
+Route::Resource('roles',\App\Http\Controllers\Users\RolesController::class);
+//for permissions
+Route::Resource('permissions',\App\Http\Controllers\Users\PermissionController::class);
+
 
 Route::get('/Dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('Dashboard');
 

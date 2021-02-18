@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
+use Spatie\Permission\Models\Role;
 
 class RolesController extends Controller
 {
@@ -14,7 +16,8 @@ class RolesController extends Controller
      */
     public function index()
     {
-        //
+        $arr['role']=Role::all();
+        return View('Users.Roles.view')->with($arr);
     }
 
     /**
@@ -24,7 +27,7 @@ class RolesController extends Controller
      */
     public function create()
     {
-        //
+        Return View('Users.Roles.create');
     }
 
     /**
@@ -33,9 +36,15 @@ class RolesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Role $role)
     {
-        //
+        //this is used by spatie
+        //Role::create(['name' => $request->name]);
+        $role->name=$request->name;
+        $role->guard_name=$request->guard_name;
+        $role->save();
+        return redirect()->route('roles.index');
+
     }
 
     /**
@@ -55,9 +64,10 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Role $role)
     {
-        //
+        $arr['role']=$role;
+        return View('Users.Roles.edit')->with($arr);
     }
 
     /**
@@ -67,9 +77,13 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Role $role)
     {
-        //
+        $role->name=$request->name;
+        $role->guard_name=$request->guard_name;
+        $role->updated_at=date('Y-m-d H:i:s');
+        $role->save();
+        return redirect()->route('roles.index');
     }
 
     /**

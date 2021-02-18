@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
 
 class PermissionController extends Controller
 {
@@ -14,7 +15,8 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        //
+        $arr['permission']=Permission::all();
+        return View('Users.Permissions.view')->with($arr);
     }
 
     /**
@@ -24,7 +26,7 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        //
+        return View('Users.Permissions.create');
     }
 
     /**
@@ -33,9 +35,13 @@ class PermissionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,Permission $permission)
     {
-        //
+        $permission->name=$request->name;
+        $permission->guard_name=$request->guard_name;
+        $permission->save();
+        return redirect()->route('permissions.index');
+
     }
 
     /**
@@ -55,9 +61,10 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Permission $permission)
     {
-        //
+        $arr['permission']=$permission;
+        return View('Users.Permissions.edit')->with($arr);
     }
 
     /**
@@ -67,9 +74,13 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Permission $permission)
     {
-        //
+        $permission->name=$request->name;
+        $permission->guard_name=$request->guard_name;
+        $permission->updated_at=date('Y-m-d H:i:s');
+        $permission->save();
+        return redirect()->route('permissions.index');
     }
 
     /**

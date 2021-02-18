@@ -3,16 +3,10 @@
 namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
-class UserController extends Controller
+class UserRolesController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -20,8 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $arr['user']=User::withTrashed()->get();
-        return view('Users.view')->with($arr);
+        //
     }
 
     /**
@@ -45,13 +38,6 @@ class UserController extends Controller
         //
     }
 
-    public function restore($id){
-        $user=User::withTrashed()->where('id',$id)
-            ->first();
-        $user->restore();
-        return redirect()->route('users.index');
-    }
-
     /**
      * Display the specified resource.
      *
@@ -69,10 +55,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($id)
     {
-        $arr['user']=$user;
-        return view('Users.edit')->with($arr);
+        //
     }
 
     /**
@@ -82,18 +67,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
-        $user->name=$request->name;
-        $user->email=$request->email;
-        if ($request->password!=null && $request->confirm_password!=null){
-            if ($request->password==$request->confirm_password){
-                $user->password=Hash::make($request->password);
-            }
-        }
-        $user->update_at=date('Y-m-d H:i:s');
-        $user->save();
-        return redirect()->route('users.index');
+        //
     }
 
     /**
@@ -104,7 +80,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        User::destroy($id);
-        return redirect()->route('users.index');
+        //
     }
 }

@@ -25,7 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        /*Role::create(['name' => 'Administrator']);
+        /*
         Permission::create(['name' => 'write']);*/
         /*$role=Role::findById(1);
         $permission=Permission::findById(1);
