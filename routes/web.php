@@ -25,7 +25,14 @@ Route::put('users/restore/{id}',[App\Http\Controllers\Users\UserController::clas
 Route::Resource('roles',\App\Http\Controllers\Users\RolesController::class);
 //for permissions
 Route::Resource('permissions',\App\Http\Controllers\Users\PermissionController::class);
-
-
+//for user roles
+Route::get('userroles',[App\Http\Controllers\Users\UserRolesController::class, 'index'])->name('userroles');
+Route::get('userroles/{user}/edit',[App\Http\Controllers\Users\UserRolesController::class, 'edit']);
+Route::put('userroles/{user}',[App\Http\Controllers\Users\UserRolesController::class, 'update']);
+//for role permissions
+Route::get('rolepermissions',[App\Http\Controllers\Users\RolePermissionsController::class,'index'])->name('rolepermissions');
+Route::get('rolepermissions/{role}/edit',[App\Http\Controllers\Users\RolePermissionsController::class,'edit']);
+Route::put('rolepermissions/{role}',[App\Http\Controllers\Users\RolePermissionsController::class,'update']);
+//Dashboard
 Route::get('/Dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('Dashboard');
 

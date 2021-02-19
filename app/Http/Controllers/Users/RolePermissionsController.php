@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
-class UserRolesController extends Controller
+class RolePermissionsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,28 +16,9 @@ class UserRolesController extends Controller
      */
     public function index()
     {
-        $arr['user']=User::all();
         $arr['role']=Role::all();
-        return view('Users.UserRoles.view')->with($arr);
-       /* foreach ( $arr['role'] as $r)
-        {
-            echo "users ";
-            echo $r->name;
-            echo " ";
-        }
-        foreach ($arr['user'] as $u)
-        {
-            echo "<br>";
-            echo $u->name;
-            echo " ";
-            foreach ($arr['role'] as $r){
-                if ($u->hasRole($r->name)){
-                    echo "true";
-                }
-                echo "false";
-                echo " ";
-            }
-        }*/
+        $arr['permission']=Permission::all();
+        return view('Users.RolePermissions.view')->with($arr);
     }
 
     /**
@@ -78,11 +59,11 @@ class UserRolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(Role $role)
     {
-        $arr['user']=$user;
-        $arr['role']=Role::all();
-        return view('Users.UserRoles.edit')->with($arr);
+        $arr['role']=$role;
+        $arr['permission']=Permission::all();
+        return view('Users.RolePermissions.edit')->with($arr);
     }
 
     /**
@@ -92,19 +73,18 @@ class UserRolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, Role $role)
     {
-
-        if ($request->input('roles') !== Null){
+        if ($request->input('permission') !== Null){
             $x=0;
             $arr=array();
-            foreach ($request->input('roles') as $checked){
-                $role=Role::findById($checked);
-                $arr[$x]=$role->name;
+            foreach ($request->input('permission') as $checked){
+                $permission=Permission::findById($checked);
+                $arr[$x]=$permission->name;
                 $x++;
             }
-            $user->syncRoles($arr);
-            return redirect()->route('userroles');
+            $role->syncPermissions($arr);
+            return redirect()->route('rolepermissions');
         }
     }
 

@@ -107,13 +107,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="{{url('userroles')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>User Roles List</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="{{url('rolepermissions')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Roles Permission List</p>
                                 </a>

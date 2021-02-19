@@ -5,13 +5,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Edit Role For User {{$user->id}}</h1>
+                        <h1>Edit Role For User {{$role->id}}</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{route('Dashboard')}}">Dashboard</a></li>
                             <li class="breadcrumb-item "><a href="{{route('roles.index')}}">Role List</a></li>
-                            <li class="breadcrumb-item active">Edit Role {{$user->id}}</li>
+                            <li class="breadcrumb-item active">Edit Role {{$role->id}}</li>
                         </ol>
                     </div>
                 </div>
@@ -20,11 +20,11 @@
 
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">Edit Role {{$user->id}} Form</h3>
+                <h3 class="card-title">Edit Role {{$role->id}} Form</h3>
             </div>
 
             <div class="card-body">
-                <form method="POST" action="{{ url('userroles/'.$user->id) }}">
+                <form method="POST" action="{{ url('rolepermissions/'.$role->id) }}">
                     @method('PUT')
                     @csrf
                     <div class="row">
@@ -32,17 +32,17 @@
                             <!-- text input -->
                             <div class="form-group">
                                 <label for="name">Name</label>
-                                <input type="text" name="name" id="name" class="form-control" value="{{$user->name}}" disabled>
+                                <input type="text" name="name" id="name" class="form-control" value="{{$role->name}}" disabled>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox">
                                     <label for="name">Select Roles</label>
-                                    @foreach($role as $r)
+                                    @foreach($permission as $p)
                                         <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" name="roles[]" type="checkbox" id="{{$r->id}}" value="{{$r->id}}" @if($user->hasRole($r->name)) checked @endif>
-                                            <label for={{$r->id}} class="custom-control-label">{{$r->name}}</label>
+                                            <input class="custom-control-input" name="permission[]" type="checkbox" id="{{$p->id}}" value="{{$p->id}}" @if($role->hasPermissionTo($p->name)) checked @endif>
+                                            <label for={{$p->id}} class="custom-control-label">{{$p->name}}</label>
                                         </div>
                                     @endforeach
                                 </div>
