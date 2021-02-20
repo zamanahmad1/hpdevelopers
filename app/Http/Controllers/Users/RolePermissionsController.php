@@ -84,8 +84,10 @@ class RolePermissionsController extends Controller
                 $x++;
             }
             $role->syncPermissions($arr);
-            return redirect()->route('rolepermissions');
+        }else{
+            $role->revokePermissionTo(Permission::all());
         }
+        return redirect()->route('rolepermissions');
     }
 
     /**
