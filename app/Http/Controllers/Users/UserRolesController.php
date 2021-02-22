@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 
 class UserRolesController extends Controller
@@ -80,9 +82,12 @@ class UserRolesController extends Controller
      */
     public function edit(User $user)
     {
-        $arr['user']=$user;
-        $arr['role']=Role::all();
-        return view('Users.UserRoles.edit')->with($arr);
+        if (Gate::allows('edituser',Auth::user())) {
+            $arr['user']=$user;
+            $arr['role']=Role::all();
+            return view('Users.UserRoles.edit')->with($arr);
+        }else
+            return abort(403);
     }
 
     /**
