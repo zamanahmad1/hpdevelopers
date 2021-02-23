@@ -10,6 +10,10 @@ use Spatie\Permission\Models\Role;
 
 class UserDirectPermissionsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -91,7 +95,7 @@ class UserDirectPermissionsController extends Controller
                 $user->revokePermissionTo($p->name);
             }
         }
-        return redirect()->route('userpermissions');
+        return redirect()->route('userpermissions.index');
 
     }
 

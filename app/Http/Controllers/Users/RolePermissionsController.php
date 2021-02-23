@@ -9,6 +9,10 @@ use Spatie\Permission\Models\Role;
 
 class RolePermissionsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -87,7 +91,7 @@ class RolePermissionsController extends Controller
         }else{
             $role->revokePermissionTo(Permission::all());
         }
-        return redirect()->route('rolepermissions');
+        return redirect()->route('rolepermissions.index');
     }
 
     /**

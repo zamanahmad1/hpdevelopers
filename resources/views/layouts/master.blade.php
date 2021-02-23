@@ -128,6 +128,32 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </ul>
                         </li>
                     @endcan
+
+                    <li class="nav-item">
+                        <a href="" class="nav-link">
+                            <i style="font-size: 1.5em;" class="nav-icon fas fa-hotel"></i>
+                            <p>
+                                Company
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Project List</p>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Add Project</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>

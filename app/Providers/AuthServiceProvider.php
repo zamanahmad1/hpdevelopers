@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\User;
+use App\Policies\UserPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -15,6 +16,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+//            User::class => UserPolicy::class,
     ];
 
     /**
@@ -26,15 +28,9 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('edituser',function (User $user){
-            if ($user->hasRole('Administrator'))
-              {
-                return true;
-            }else
-            {
-                return false;
-            }
-        });
+        /*Gate::define('viewuser','UserPolicy@view');
+        Gate::resource('user',UserPolicy::class,
+            ['viewany','view','update','delete','forcedelete']);*/
 
         //
     }

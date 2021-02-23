@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Users;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -13,6 +15,7 @@ class UserController extends Controller
     {
         $this->middleware('auth');
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -20,7 +23,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $arr['user']=User::withTrashed()->get();
+        $arr['user'] = User::withTrashed()->get();
         return view('Users.view')->with($arr);
     }
 
@@ -37,7 +40,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -45,8 +48,9 @@ class UserController extends Controller
         //
     }
 
-    public function restore($id){
-        $user=User::withTrashed()->where('id',$id)
+    public function restore($id)
+    {
+        $user = User::withTrashed()->where('id', $id)
             ->first();
         $user->restore();
         return redirect()->route('users.index');
@@ -55,7 +59,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -66,32 +70,32 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit(User $user)
     {
-        $arr['user']=$user;
+        $arr['user'] = $user;
         return view('Users.edit')->with($arr);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, User $user)
     {
-        $user->name=$request->name;
-        $user->email=$request->email;
-        if ($request->password!=null && $request->confirm_password!=null){
-            if ($request->password==$request->confirm_password){
-                $user->password=Hash::make($request->password);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if ($request->password != null && $request->confirm_password != null) {
+            if ($request->password == $request->confirm_password) {
+                $user->password = Hash::make($request->password);
             }
         }
-        $user->update_at=date('Y-m-d H:i:s');
+        $user->updated_at= date('Y-m-d H:i:s');
         $user->save();
         return redirect()->route('users.index');
     }
@@ -99,12 +103,13 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         User::destroy($id);
         return redirect()->route('users.index');
+
     }
 }
