@@ -57,6 +57,14 @@ class RolePermissionSeeder extends Seeder
         Permission::create(['name' => 'view user permissions']);
         Permission::create(['name' => 'edit user permissions']);
         Permission::create(['name' => 'update user permissions']);
+        //Project Permissions
+        Permission::create(['name' => 'view projects']);
+        Permission::create(['name' => 'create projects']);
+        Permission::create(['name' => 'store projects']);
+        Permission::create(['name' => 'edit projects']);
+        Permission::create(['name' => 'update projects']);
+        Permission::create(['name' => 'delete projects']);
+        Permission::create(['name' => 'restore projects']);
 
         $user=UserAlias::find(1);
         $user->assignRole(1);

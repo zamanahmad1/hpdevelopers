@@ -48,7 +48,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-6">
-                            <input type="submit" class="btn btn-info text-white" value="Save" id="save">
+                            <input type="submit" class="btn btn-info text-white bg-success" value="Save" id="save">
                         </div>
                     </div>
                 </form>

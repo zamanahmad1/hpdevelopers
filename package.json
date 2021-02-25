@@ -23,6 +23,7 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.15.2",
-        "admin-lte": "^3.1.0-rc"
+        "admin-lte": "^3.1.0-rc",
+        "jquery-confirm": "^3.3.4"
     }
 }

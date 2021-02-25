@@ -92,37 +92,37 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <li class="nav-item">
                                     <a href="{{route('users.index')}}" class="nav-link active">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Users List</p>
+                                        <p>Users </p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{route('roles.index')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Roles List</p>
+                                        <p>Roles </p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{route('permissions.index')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Permission List</p>
+                                        <p>Permissions </p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{url('userroles')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>User Roles List</p>
+                                        <p>User Roles </p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{url('rolepermissions')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Roles Permission List</p>
+                                        <p>Roles Permissions </p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{url('userpermissions')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>User Direct Permission List</p>
+                                        <p>User Direct Permissions </p>
                                     </a>
                                 </li>
                             </ul>
@@ -139,9 +139,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="" class="nav-link">
+                                <a href="{{route('projects.index')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Project List</p>
+                                    <p>Project</p>
                                 </a>
                             </li>
                         </ul>

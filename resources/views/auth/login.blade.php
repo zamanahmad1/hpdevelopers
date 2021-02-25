@@ -22,7 +22,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card card-info">
-                <div class="card-header">
+                <div class="card-header bg-primary">
                     <h3 class="card-title">{{ __('Login') }}</h3>
                 </div>
                 <!-- /.card-header -->
@@ -65,7 +65,7 @@
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">{{ __('Login') }}</button>
+                        <button type="submit" class="btn btn-success">{{ __('Login') }}</button>
                         <button type="submit" class="btn btn-default float-right">
                             @if (Route::has('password.request'))
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
