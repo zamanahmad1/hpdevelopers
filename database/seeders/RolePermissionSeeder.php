@@ -65,6 +65,31 @@ class RolePermissionSeeder extends Seeder
         Permission::create(['name' => 'update projects']);
         Permission::create(['name' => 'delete projects']);
         Permission::create(['name' => 'restore projects']);
+        //Societies Permissions
+        Permission::create(['name' => 'view societies']);
+        Permission::create(['name' => 'create societies']);
+        Permission::create(['name' => 'store societies']);
+        Permission::create(['name' => 'edit societies']);
+        Permission::create(['name' => 'update societies']);
+        Permission::create(['name' => 'delete societies']);
+        Permission::create(['name' => 'restore societies']);
+        //Sectors Permissions
+        Permission::create(['name' => 'view sectors']);
+        Permission::create(['name' => 'create sectors']);
+        Permission::create(['name' => 'store sectors']);
+        Permission::create(['name' => 'edit sectors']);
+        Permission::create(['name' => 'update sectors']);
+        Permission::create(['name' => 'delete sectors']);
+        Permission::create(['name' => 'restore sectors']);
+        //Block Permissions
+        Permission::create(['name' => 'view blocks']);
+        Permission::create(['name' => 'create blocks']);
+        Permission::create(['name' => 'store blocks']);
+        Permission::create(['name' => 'edit blocks']);
+        Permission::create(['name' => 'update blocks']);
+        Permission::create(['name' => 'delete blocks']);
+        Permission::create(['name' => 'restore blocks']);
+
 
         $user=UserAlias::find(1);
         $user->assignRole(1);

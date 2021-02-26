@@ -50,13 +50,39 @@ Route::get('userpermissions',[\App\Http\Controllers\Users\UserDirectPermissionsC
 Route::get('userpermissions/{user}/edit',[\App\Http\Controllers\Users\UserDirectPermissionsController::class, 'edit'])->middleware('permission:edit user permissions')->name('userpermissions.edit');
 Route::put('userpermissions/{user}' , [\App\Http\Controllers\Users\UserDirectPermissionsController::class, 'update'])->middleware('permission:update user permissions')->name('userpermissions.update');
 //for projects
-Route::get('projects',[\App\Http\Controllers\Company\ProjectController::class,'index'])->middlewares('permission:view projects')->name('projects.index');
-Route::get('projects/create',[\App\Http\Controllers\Company\ProjectController::class,'create'])->middlewares('permission:create projects')->name('projects.create');
-Route::post('projects',[\App\Http\Controllers\Company\ProjectController::class,'store'])->middlewares('permission:store projects')->name('projects.store');
-Route::get('projects/{project}/edit',[\App\Http\Controllers\Company\ProjectController::class,'edit'])->middlewares('permission:edit projects')->name('projects.edit');
-Route::put('projects/{project}',[\App\Http\Controllers\Company\ProjectController::class,'update'])->middlewares('permission:update projects')->name('projects.update');
-Route::delete('project/{project}',[\App\Http\Controllers\Company\ProjectController::class ,'destroy'])->middlewares('permission:delete projects')->name('projects.destroy');
-Route::put('project/restore/{project}',[\App\Http\Controllers\Company\ProjectController::class,'restore'])->middlewares('permission:restore projects')->name('projects.restore');
+Route::get('projects',[\App\Http\Controllers\Company\ProjectController::class,'index'])->middleware('permission:view projects')->name('projects.index');
+Route::get('projects/create',[\App\Http\Controllers\Company\ProjectController::class,'create'])->middleware('permission:create projects')->name('projects.create');
+Route::post('projects',[\App\Http\Controllers\Company\ProjectController::class,'store'])->middleware('permission:store projects')->name('projects.store');
+Route::get('projects/{project}/edit',[\App\Http\Controllers\Company\ProjectController::class,'edit'])->middleware('permission:edit projects')->name('projects.edit');
+Route::put('projects/{project}',[\App\Http\Controllers\Company\ProjectController::class,'update'])->middleware('permission:update projects')->name('projects.update');
+Route::delete('projects/{project}',[\App\Http\Controllers\Company\ProjectController::class ,'destroy'])->middleware('permission:delete projects')->name('projects.destroy');
+Route::put('project/restore/{project}',[\App\Http\Controllers\Company\ProjectController::class,'restore'])->middleware('permission:restore projects')->name('projects.restore');
+//for Societies
+Route::get('societies',[\App\Http\Controllers\Company\SocietyController::class,'index'])->middleware('permission:view societies')->name('societies.index');
+Route::get('societies/create',[\App\Http\Controllers\Company\SocietyController::class,'create'])->middleware('permission:create societies')->name('societies.create');
+Route::post('societies',[\App\Http\Controllers\Company\SocietyController::class,'store'])->middleware('permission:store societies')->name('societies.store');
+Route::get('societies/{society}/edit',[\App\Http\Controllers\Company\SocietyController::class,'edit'])->middleware('permission:edit societies')->name('societies.edit');
+Route::put('societies/{society}',[\App\Http\Controllers\Company\SocietyController::class,'update'])->middleware('permission:update societies')->name('societies.update');
+Route::delete('societies/{society}',[\App\Http\Controllers\Company\SocietyController::class ,'destroy'])->middleware('permission:delete societies')->name('societies.destroy');
+Route::put('societies/restore/{society}',[\App\Http\Controllers\Company\SocietyController::class,'restore'])->middleware('permission:restore societies')->name('societies.restore');
+//for Sectors
+Route::get('sectors',[\App\Http\Controllers\Company\SectorController::class,'index'])->middleware('permission:view sectors')->name('sectors.index');
+Route::get('sectors/create',[\App\Http\Controllers\Company\SectorController::class,'create'])->middleware('permission:create sectors')->name('sectors.create');
+Route::post('sectors',[\App\Http\Controllers\Company\SectorController::class,'store'])->middleware('permission:store sectors')->name('sectors.store');
+Route::get('sectors/{sector}/edit',[\App\Http\Controllers\Company\SectorController::class,'edit'])->middleware('permission:edit sectors')->name('sectors.edit');
+Route::put('sectors/{sector}',[\App\Http\Controllers\Company\SectorController::class,'update'])->middleware('permission:update sectors')->name('sectors.update');
+Route::delete('sectors/{sector}',[\App\Http\Controllers\Company\SectorController::class ,'destroy'])->middleware('permission:delete sectors')->name('sectors.destroy');
+Route::put('sectors/restore/{sector}',[\App\Http\Controllers\Company\SectorController::class,'restore'])->middleware('permission:restore sectors')->name('sectors.restore');
+//for Blocks
+Route::get('blocks',[\App\Http\Controllers\Company\BlockController::class,'index'])->middleware('permission:view blocks')->name('blocks.index');
+Route::get('blocks/create',[\App\Http\Controllers\Company\BlockController::class,'create'])->middleware('permission:create blocks')->name('blocks.create');
+Route::post('blocks',[\App\Http\Controllers\Company\BlockController::class,'store'])->middleware('permission:store blocks')->name('blocks.store');
+Route::get('blocks/{block}/edit',[\App\Http\Controllers\Company\BlockController::class,'edit'])->middleware('permission:edit blocks')->name('blocks.edit');
+Route::put('blocks/{block}',[\App\Http\Controllers\Company\BlockController::class,'update'])->middleware('permission:update blocks')->name('blocks.update');
+Route::delete('blocks/{block}',[\App\Http\Controllers\Company\BlockController::class ,'destroy'])->middleware('permission:delete blocks')->name('blocks.destroy');
+Route::put('blocks/restore/{block}',[\App\Http\Controllers\Company\BlockController::class,'restore'])->middleware('permission:restore blocks')->name('blocks.restore');
+
+
 //Dashboard
 Route::get('/Dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('Dashboard');
 
