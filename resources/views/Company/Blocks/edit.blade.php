@@ -84,8 +84,8 @@
                         alert('Block Code Cannot be Empty')
                         event.preventDefault();
                     }
-                    if( $('#society').val()==''){
-                        alert('Select Society')
+                    if( $('#sector').val()==''){
+                        alert('Select Sector')
                         event.preventDefault();
                     }
                     if( $('#description').val()==''){

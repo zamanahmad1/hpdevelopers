@@ -81,8 +81,22 @@ Route::get('blocks/{block}/edit',[\App\Http\Controllers\Company\BlockController:
 Route::put('blocks/{block}',[\App\Http\Controllers\Company\BlockController::class,'update'])->middleware('permission:update blocks')->name('blocks.update');
 Route::delete('blocks/{block}',[\App\Http\Controllers\Company\BlockController::class ,'destroy'])->middleware('permission:delete blocks')->name('blocks.destroy');
 Route::put('blocks/restore/{block}',[\App\Http\Controllers\Company\BlockController::class,'restore'])->middleware('permission:restore blocks')->name('blocks.restore');
-
-
+//for Streets
+Route::get('streets',[\App\Http\Controllers\Company\StreetController::class,'index'])->middleware('permission:view streets')->name('streets.index');
+Route::get('streets/create',[\App\Http\Controllers\Company\StreetController::class,'create'])->middleware('permission:create streets')->name('streets.create');
+Route::post('streets',[\App\Http\Controllers\Company\StreetController::class,'store'])->middleware('permission:store streets')->name('streets.store');
+Route::get('streets/{street}/edit',[\App\Http\Controllers\Company\StreetController::class,'edit'])->middleware('permission:edit streets')->name('streets.edit');
+Route::put('streets/{street}',[\App\Http\Controllers\Company\StreetController::class,'update'])->middleware('permission:update streets')->name('streets.update');
+Route::delete('streets/{street}',[\App\Http\Controllers\Company\StreetController::class ,'destroy'])->middleware('permission:delete streets')->name('streets.destroy');
+Route::put('streets/restore/{street}',[\App\Http\Controllers\Company\StreetController::class,'restore'])->middleware('permission:restore streets')->name('streets.restore');
+//for Plot Type
+Route::get('plottypes',[\App\Http\Controllers\Plots\PlotTypeController::class,'index'])->middleware('permission:view plot types')->name('plottypes.index');
+Route::get('plottypes/create',[\App\Http\Controllers\Plots\PlotTypeController::class,'create'])->middleware('permission:create plot types')->name('plottypes.create');
+Route::post('plottypes',[\App\Http\Controllers\Plots\PlotTypeController::class,'store'])->middleware('permission:store plot types')->name('plottypes.store');
+Route::get('plottypes/{plotType}/edit',[\App\Http\Controllers\Plots\PlotTypeController::class,'edit'])->middleware('permission:edit plot types')->name('plottypes.edit');
+Route::put('plottypes/{plotType}',[\App\Http\Controllers\Plots\PlotTypeController::class,'update'])->middleware('permission:update plot types')->name('plottypes.update');
+Route::delete('plottypes/{plotType}',[\App\Http\Controllers\Plots\PlotTypeController::class ,'destroy'])->middleware('permission:delete plot types')->name('plottypes.destroy');
+Route::put('plottypes/restore/{plotType}',[\App\Http\Controllers\Plots\PlotTypeController::class,'restore'])->middleware('permission:restore plot types')->name('plottypes.restore');
 //Dashboard
 Route::get('/Dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('Dashboard');
 

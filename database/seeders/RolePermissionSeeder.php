@@ -89,7 +89,22 @@ class RolePermissionSeeder extends Seeder
         Permission::create(['name' => 'update blocks']);
         Permission::create(['name' => 'delete blocks']);
         Permission::create(['name' => 'restore blocks']);
-
+        //Street Permissions
+        Permission::create(['name' => 'view streets']);
+        Permission::create(['name' => 'create streets']);
+        Permission::create(['name' => 'store streets']);
+        Permission::create(['name' => 'edit streets']);
+        Permission::create(['name' => 'update streets']);
+        Permission::create(['name' => 'delete streets']);
+        Permission::create(['name' => 'restore streets']);
+        //Plot Type Permissions
+        Permission::create(['name' => 'view plot types']);
+        Permission::create(['name' => 'create plot types']);
+        Permission::create(['name' => 'store plot types']);
+        Permission::create(['name' => 'edit plot types']);
+        Permission::create(['name' => 'update plot types']);
+        Permission::create(['name' => 'delete plot types']);
+        Permission::create(['name' => 'restore plot types']);
 
         $user=UserAlias::find(1);
         $user->assignRole(1);

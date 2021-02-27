@@ -5,13 +5,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Create New Street </h1>
+                        <h1>Edit Plot Type </h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{route('Dashboard')}}">Dashboard</a></li>
-                            <li class="breadcrumb-item "><a href="{{route('streets.index')}}">Street List</a></li>
-                            <li class="breadcrumb-item active">Create New Street</li>
+                            <li class="breadcrumb-item "><a href="{{route('plottypes.index')}}">Plot Type List</a></li>
+                            <li class="breadcrumb-item active">Edit Plot Type {{$plotType->id}}</li>
                         </ol>
                     </div>
                 </div>
@@ -20,39 +20,26 @@
 
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">Create New Street Form</h3>
+                <h3 class="card-title">Edit Plot Type {{$plotType->id}} Form</h3>
             </div>
 
             <div class="card-body">
-                <form method="POST" action="{{ route('streets.update',$street) }}">
-                    @method('PUT')
+                <form method="POST" action="{{ route('plottypes.update',$plotType->id) }}">
                     @csrf
+                    @method('PUT')
                     <div class="row">
                         <div class="col-sm-6">
                             <!-- text input -->
                             <div class="form-group">
                                 <label>Name</label>
-                                <input type="text" name="name" id="name" class="form-control" value="{{$street->name}}">
+                                <input type="text" name="name" class="form-control" id="name" value="{{$plotType->name}}">
                             </div>
                         </div>
 
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Code</label>
-                                <input type="text" name="code" id="code" class="form-control" value="{{$street->code}}">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Project</label>
-                                <select name="block_code" id="block" class="form-control">
-                                    <option value="" name="block_code">Select Block</option>
-                                    @foreach($block as $s)
-                                        <option value="{{$s->code}}" @if($street->block_code==$s->code) selected @endif>{{$s->name}}</option>
-                                    @endforeach
-                                </select>
+                                <input type="text" name="code" class="form-control" id="code" value="{{$plotType->code}}">
                             </div>
                         </div>
                     </div>
@@ -60,7 +47,7 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label>Description</label>
-                                <textarea class="form-control" name="description" id="description" rows="5">{{$street->description}}</textarea>
+                                <textarea class="form-control" name="description" id="description" rows="5">{{$plotType->description}}</textarea>
                             </div>
                         </div>
                     </div>
@@ -77,22 +64,17 @@
             $(document).ready(function() {
                 $('#save').click(function (event){
                     if ($('#name').val()=='' ){
-                        alert('Street Name Cannot be Empty')
+                        alert('Plot Type Name Cannot be Empty')
                         event.preventDefault();
                     }
                     if($('#code').val()=='' ){
-                        alert('Street Code Cannot be Empty')
-                        event.preventDefault();
-                    }
-                    if( $('#block').val()==''){
-                        alert('Select Block')
+                        alert('Plot Type Code Cannot be Empty')
                         event.preventDefault();
                     }
                     if( $('#description').val()==''){
-                        alert('Street Description Cannot be Empty')
+                        alert('Plot Type Description Cannot be Empty')
                         event.preventDefault();
                     }
-
                 })
             });
         </script>
