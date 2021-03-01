@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\PlotAvailability;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -58,6 +59,11 @@ class StreetSeeder extends Seeder
             'updated_at'=> date('Y-m-d H:i:s')
         ]]);
         $this->call(PlotTypeSeeder::class);
+        $this->call(PlotStatusSeeder::class);
+        $this->call(PlotCategorySeeder::class);
+        $this->call(PlotShapeSeeder::class);
+        $this->call(PlotAvailabilitySeeder::class);
+        $this->call(PlotInhensiveFeatureSeeder::class);
 
     }
 }

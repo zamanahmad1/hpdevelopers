@@ -105,6 +105,46 @@ class RolePermissionSeeder extends Seeder
         Permission::create(['name' => 'update plot types']);
         Permission::create(['name' => 'delete plot types']);
         Permission::create(['name' => 'restore plot types']);
+        //Plot Statuses
+        Permission::create(['name' => 'view plot status']);
+        Permission::create(['name' => 'create plot status']);
+        Permission::create(['name' => 'store plot status']);
+        Permission::create(['name' => 'edit plot status']);
+        Permission::create(['name' => 'update plot status']);
+        Permission::create(['name' => 'delete plot status']);
+        Permission::create(['name' => 'restore plot status']);
+        //Plot Categories
+        Permission::create(['name' => 'view plot categories']);
+        Permission::create(['name' => 'create plot categories']);
+        Permission::create(['name' => 'store plot categories']);
+        Permission::create(['name' => 'edit plot categories']);
+        Permission::create(['name' => 'update plot categories']);
+        Permission::create(['name' => 'delete plot categories']);
+        Permission::create(['name' => 'restore plot categories']);
+        //Plot Shapes
+        Permission::create(['name' => 'view plot shapes']);
+        Permission::create(['name' => 'create plot shapes']);
+        Permission::create(['name' => 'store plot shapes']);
+        Permission::create(['name' => 'edit plot shapes']);
+        Permission::create(['name' => 'update plot shapes']);
+        Permission::create(['name' => 'delete plot shapes']);
+        Permission::create(['name' => 'restore plot shapes']);
+        //Plot Availability
+        Permission::create(['name' => 'view plot availabilities']);
+        Permission::create(['name' => 'create plot availabilities']);
+        Permission::create(['name' => 'store plot availabilities']);
+        Permission::create(['name' => 'edit plot availabilities']);
+        Permission::create(['name' => 'update plot availabilities']);
+        Permission::create(['name' => 'delete plot availabilities']);
+        Permission::create(['name' => 'restore plot availabilities']);
+        //Plot Inhensive Features
+        Permission::create(['name' => 'view plot inhensive features']);
+        Permission::create(['name' => 'create plot inhensive features']);
+        Permission::create(['name' => 'store plot inhensive features']);
+        Permission::create(['name' => 'edit plot inhensive features']);
+        Permission::create(['name' => 'update plot inhensive features']);
+        Permission::create(['name' => 'delete plot inhensive features']);
+        Permission::create(['name' => 'restore plot inhensive features']);
 
         $user=UserAlias::find(1);
         $user->assignRole(1);

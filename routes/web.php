@@ -97,6 +97,46 @@ Route::get('plottypes/{plotType}/edit',[\App\Http\Controllers\Plots\PlotTypeCont
 Route::put('plottypes/{plotType}',[\App\Http\Controllers\Plots\PlotTypeController::class,'update'])->middleware('permission:update plot types')->name('plottypes.update');
 Route::delete('plottypes/{plotType}',[\App\Http\Controllers\Plots\PlotTypeController::class ,'destroy'])->middleware('permission:delete plot types')->name('plottypes.destroy');
 Route::put('plottypes/restore/{plotType}',[\App\Http\Controllers\Plots\PlotTypeController::class,'restore'])->middleware('permission:restore plot types')->name('plottypes.restore');
+//for Plot Statuses
+Route::get('plotstatus',[\App\Http\Controllers\Plots\PlotStatusController::class,'index'])->middleware('permission:view plot status')->name('plotstatus.index');
+Route::get('plotstatus/create',[\App\Http\Controllers\Plots\PlotStatusController::class,'create'])->middleware('permission:create plot status')->name('plotstatus.create');
+Route::post('plotstatus',[\App\Http\Controllers\Plots\PlotStatusController::class,'store'])->middleware('permission:store plot status')->name('plotstatus.store');
+Route::get('plotstatus/{plotStatus}/edit',[\App\Http\Controllers\Plots\PlotStatusController::class,'edit'])->middleware('permission:edit plot status')->name('plotstatus.edit');
+Route::put('plotstatus/{plotStatus}',[\App\Http\Controllers\Plots\PlotStatusController::class,'update'])->middleware('permission:update plot status')->name('plotstatus.update');
+Route::delete('plotstatus/{plotStatus}',[\App\Http\Controllers\Plots\PlotStatusController::class ,'destroy'])->middleware('permission:delete plot status')->name('plotstatus.destroy');
+Route::put('plotstatus/restore/{plotStatus}',[\App\Http\Controllers\Plots\PlotStatusController::class,'restore'])->middleware('permission:restore plot status')->name('plotstatus.restore');
+//for Plot Categories
+Route::get('plotcategories',[\App\Http\Controllers\Plots\PlotCategoryController::class,'index'])->middleware('permission:view plot categories')->name('plotcategories.index');
+Route::get('plotcategories/create',[\App\Http\Controllers\Plots\PlotCategoryController::class,'create'])->middleware('permission:create plot categories')->name('plotcategories.create');
+Route::post('plotcategories',[\App\Http\Controllers\Plots\PlotCategoryController::class,'store'])->middleware('permission:store plot categories')->name('plotcategories.store');
+Route::get('plotcategories/{plotCategory}/edit',[\App\Http\Controllers\Plots\PlotCategoryController::class,'edit'])->middleware('permission:edit plot categories')->name('plotcategories.edit');
+Route::put('plotcategories/{plotCategory}',[\App\Http\Controllers\Plots\PlotCategoryController::class,'update'])->middleware('permission:update plot categories')->name('plotcategories.update');
+Route::delete('plotcategories/{plotCategory}',[\App\Http\Controllers\Plots\PlotCategoryController::class ,'destroy'])->middleware('permission:delete plot categories')->name('plotcategories.destroy');
+Route::put('plotcategories/restore/{plotCategory}',[\App\Http\Controllers\Plots\PlotCategoryController::class,'restore'])->middleware('permission:restore plot categories')->name('plotcategories.restore');
+//for Plot Shapes
+Route::get('plotshapes',[\App\Http\Controllers\Plots\PlotShapeController::class,'index'])->middleware('permission:view plot shapes')->name('plotshapes.index');
+Route::get('plotshapes/create',[\App\Http\Controllers\Plots\PlotShapeController::class,'create'])->middleware('permission:create plot shapes')->name('plotshapes.create');
+Route::post('plotshapes',[\App\Http\Controllers\Plots\PlotShapeController::class,'store'])->middleware('permission:store plot shapes')->name('plotshapes.store');
+Route::get('plotshapes/{plotShape}/edit',[\App\Http\Controllers\Plots\PlotShapeController::class,'edit'])->middleware('permission:edit plot shapes')->name('plotshapes.edit');
+Route::put('plotshapes/{plotShape}',[\App\Http\Controllers\Plots\PlotShapeController::class,'update'])->middleware('permission:update plot shapes')->name('plotshapes.update');
+Route::delete('plotshapes/{plotShape}',[\App\Http\Controllers\Plots\PlotShapeController::class ,'destroy'])->middleware('permission:delete plot shapes')->name('plotshapes.destroy');
+Route::put('plotshapes/restore/{plotShape}',[\App\Http\Controllers\Plots\PlotShapeController::class,'restore'])->middleware('permission:restore plot shapes')->name('plotshapes.restore');
+//for Plot Availabilities
+Route::get('plotavailabilities',[\App\Http\Controllers\Plots\PlotAvailabilityController::class,'index'])->middleware('permission:view plot availabilities')->name('plotavailabilities.index');
+Route::get('plotavailabilities/create',[\App\Http\Controllers\Plots\PlotAvailabilityController::class,'create'])->middleware('permission:create plot availabilities')->name('plotavailabilities.create');
+Route::post('plotavailabilities',[\App\Http\Controllers\Plots\PlotAvailabilityController::class,'store'])->middleware('permission:store plot availabilities')->name('plotavailabilities.store');
+Route::get('plotavailabilities/{plotAvailability}/edit',[\App\Http\Controllers\Plots\PlotAvailabilityController::class,'edit'])->middleware('permission:edit plot availabilities')->name('plotavailabilities.edit');
+Route::put('plotavailabilities/{plotAvailability}',[\App\Http\Controllers\Plots\PlotAvailabilityController::class,'update'])->middleware('permission:update plot availabilities')->name('plotavailabilities.update');
+Route::delete('plotavailabilities/{plotAvailability}',[\App\Http\Controllers\Plots\PlotAvailabilityController::class ,'destroy'])->middleware('permission:delete plot availabilities')->name('plotavailabilities.destroy');
+Route::put('plotavailabilities/restore/{plotAvailability}',[\App\Http\Controllers\Plots\PlotAvailabilityController::class,'restore'])->middleware('permission:restore plot availabilities')->name('plotavailabilities.restore');
+//for Plot Inhensive Features
+Route::get('plotinhensivefeatures',[\App\Http\Controllers\Plots\PlotInhensiveFeatureController::class,'index'])->middleware('permission:view plot inhensive features')->name('plotinhensivefeatures.index');
+Route::get('plotinhensivefeatures/create',[\App\Http\Controllers\Plots\PlotInhensiveFeatureController::class,'create'])->middleware('permission:create plot inhensive features')->name('plotinhensivefeatures.create');
+Route::post('plotinhensivefeatures',[\App\Http\Controllers\Plots\PlotInhensiveFeatureController::class,'store'])->middleware('permission:store plot inhensive features')->name('plotinhensivefeatures.store');
+Route::get('plotinhensivefeatures/{plotInhensiveFeature}/edit',[\App\Http\Controllers\Plots\PlotInhensiveFeatureController::class,'edit'])->middleware('permission:edit plot inhensive features')->name('plotinhensivefeatures.edit');
+Route::put('plotinhensivefeatures/{plotInhensiveFeature}',[\App\Http\Controllers\Plots\PlotInhensiveFeatureController::class,'update'])->middleware('permission:update plot inhensive features')->name('plotinhensivefeatures.update');
+Route::delete('plotinhensivefeatures/{plotInhensiveFeature}',[\App\Http\Controllers\Plots\PlotInhensiveFeatureController::class ,'destroy'])->middleware('permission:delete plot inhensive features')->name('plotinhensivefeatures.destroy');
+Route::put('plotinhensivefeatures/restore/{plotInhensiveFeature}',[\App\Http\Controllers\Plots\PlotInhensiveFeatureController::class,'restore'])->middleware('permission:restore plot inhensive features')->name('plotinhensivefeatures.restore');
 //Dashboard
 Route::get('/Dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('Dashboard');
 
