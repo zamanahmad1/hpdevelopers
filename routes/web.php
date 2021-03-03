@@ -137,6 +137,15 @@ Route::get('plotinhensivefeatures/{plotInhensiveFeature}/edit',[\App\Http\Contro
 Route::put('plotinhensivefeatures/{plotInhensiveFeature}',[\App\Http\Controllers\Plots\PlotInhensiveFeatureController::class,'update'])->middleware('permission:update plot inhensive features')->name('plotinhensivefeatures.update');
 Route::delete('plotinhensivefeatures/{plotInhensiveFeature}',[\App\Http\Controllers\Plots\PlotInhensiveFeatureController::class ,'destroy'])->middleware('permission:delete plot inhensive features')->name('plotinhensivefeatures.destroy');
 Route::put('plotinhensivefeatures/restore/{plotInhensiveFeature}',[\App\Http\Controllers\Plots\PlotInhensiveFeatureController::class,'restore'])->middleware('permission:restore plot inhensive features')->name('plotinhensivefeatures.restore');
+//for Plot Size
+//for Plot Inhensive Features
+Route::get('plotsizes',[\App\Http\Controllers\Plots\PlotSizeController::class,'index'])->middleware('permission:view plot sizes')->name('plotsizes.index');
+Route::get('plotsizes/create',[\App\Http\Controllers\Plots\PlotSizeController::class,'create'])->middleware('permission:create plot sizes')->name('plotsizes.create');
+Route::post('plotsizes',[\App\Http\Controllers\Plots\PlotSizeController::class,'store'])->middleware('permission:store plot sizes')->name('plotsizes.store');
+Route::get('plotsizes/{plotSize}/edit',[\App\Http\Controllers\Plots\PlotSizeController::class,'edit'])->middleware('permission:edit plot sizes')->name('plotsizes.edit');
+Route::put('plotsizes/{plotSize}',[\App\Http\Controllers\Plots\PlotSizeController::class,'update'])->middleware('permission:update plot sizes')->name('plotsizes.update');
+Route::delete('plotsizes/{plotSize}',[\App\Http\Controllers\Plots\PlotSizeController::class ,'destroy'])->middleware('permission:delete plot sizes')->name('plotsizes.destroy');
+Route::put('plotsizes/restore/{plotSize}',[\App\Http\Controllers\Plots\PlotSizeController::class,'restore'])->middleware('permission:restore plot sizes')->name('plotsizes.restore');
 //Dashboard
 Route::get('/Dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('Dashboard');
 

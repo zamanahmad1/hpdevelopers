@@ -23,7 +23,7 @@ class PlotInhensiveFeatureController extends Controller
             $arr['plotInhensiveFeature']=PlotInhensiveFeature::withTrashed()->get();
             return view('Company.Plots.InhensiveFeatures.view')->with($arr);
         }else{
-            $arr['plotInhensiveFeature']=PlotInhensiveFeatureg::all();
+            $arr['plotInhensiveFeature']=PlotInhensiveFeature::all();
             return view('Company.Plots.InhensiveFeatures.view')->with($arr);
         }
     }

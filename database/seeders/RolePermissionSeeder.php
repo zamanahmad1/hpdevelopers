@@ -145,6 +145,14 @@ class RolePermissionSeeder extends Seeder
         Permission::create(['name' => 'update plot inhensive features']);
         Permission::create(['name' => 'delete plot inhensive features']);
         Permission::create(['name' => 'restore plot inhensive features']);
+        //Plot Sizes
+        Permission::create(['name' => 'view plot sizes']);
+        Permission::create(['name' => 'create plot sizes']);
+        Permission::create(['name' => 'store plot sizes']);
+        Permission::create(['name' => 'edit plot sizes']);
+        Permission::create(['name' => 'update plot sizes']);
+        Permission::create(['name' => 'delete plot sizes']);
+        Permission::create(['name' => 'restore plot sizes']);
 
         $user=UserAlias::find(1);
         $user->assignRole(1);
