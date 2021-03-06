@@ -50,7 +50,8 @@ class PlotSizeController extends Controller
         $plotSize->name=$request->name;
         $plotSize->code=$request->code;
         $plotSize->description=$request->description;
-        $plotSize->percentage=$request->percentage;
+        $plotSize->installment_price=$request->installment_price;
+        $plotSize->cash_price=$request->cash_price;
         $plotSize->save();
         return redirect()->route('plotsizes.index');
     }
@@ -97,7 +98,8 @@ class PlotSizeController extends Controller
         $plotSize->name=$request->name;
         $plotSize->code=$request->code;
         $plotSize->description=$request->description;
-        $plotSize->percentage=$request->percentage;
+        $plotSize->installment_price=$request->installment_price;
+        $plotSize->cash_price=$request->cash_price;
         $plotSize->updated_at = date('Y-m-d H:i:s');
         $plotSize->save();
         return redirect()->route('plotsizes.index');

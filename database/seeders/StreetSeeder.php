@@ -65,6 +65,7 @@ class StreetSeeder extends Seeder
         $this->call(PlotAvailabilitySeeder::class);
         $this->call(PlotInhensiveFeatureSeeder::class);
         $this->call(PlotSizeSeeder::class);
+        $this->call(PlotInventorySeeder::class);
 
 
     }

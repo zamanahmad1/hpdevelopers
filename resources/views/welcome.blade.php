@@ -72,7 +72,7 @@
     <body class="antialiased">
         <div class="relative flex items-top justify-center min-h-screen sm:items-center sm:pt-0">
             @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                <div class="fixed top-0 right-0 px-6 py-4 sm:block sm:mb-5">
                     @auth
                         <a href="{{ url('/Dashboard') }}" class="">DashBoard</a>
                     @else
@@ -81,7 +81,7 @@
                 </div>
             @endif
 
-                <div class="content">
+                <div class="content sm:mt-5">
                     <div class="title m-b-md">
                         <img src="images/logo/800x800.png" altw="Habib Platinum logo" height="400px" width="400px"> </img>
                         <br>
