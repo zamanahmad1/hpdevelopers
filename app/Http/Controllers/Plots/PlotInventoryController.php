@@ -5,6 +5,7 @@ namespace App\Http\Controllers\plots;
 use App\Http\Controllers\Controller;
 use App\Models\PlotAvailability;
 use App\Models\PlotCategory;
+use App\Models\PlotDimension;
 use App\Models\PlotInhensiveFeature;
 use App\Models\PlotInventory;
 use App\Models\PlotPrice;
@@ -129,8 +130,12 @@ class PlotInventoryController extends Controller
             ->first();
         $plotPrice=PlotPrice::withTrashed()->where('plot_code',$plotInventory->code)
             ->first();
+        $plotDimension=PlotDimension::withTrashed()->where('plot_code',$plotInventory->code)->get();
         $plotInventory->restore();
         $plotPrice->restore();
+        foreach ($plotDimension as $pd){
+            $pd->restore();
+        }
         return redirect()->route('plotinventories.index');
     }
 
@@ -218,8 +223,12 @@ class PlotInventoryController extends Controller
     public function destroy(PlotInventory $plotInventory)
     {
         $plotPrice=PlotPrice::where('plot_code',$plotInventory->code)->first();
+        $plotDimension=PlotDimension::where('plot_code',$plotInventory->code)->get();
         $plotInventory->delete();
         $plotPrice->delete();
+        foreach ($plotDimension as $pd){
+            $pd->delete();
+        }
         return redirect()->route('plotinventories.index');
 
     }

@@ -161,6 +161,17 @@ class RolePermissionSeeder extends Seeder
         Permission::create(['name' => 'update plot inventories']);
         Permission::create(['name' => 'delete plot inventories']);
         Permission::create(['name' => 'restore plot inventories']);
+        //Plot Prices
+        Permission::create(['name' => 'view plot prices']);
+        Permission::create(['name' => 'update plot prices']);
+        //Plot Dimensions
+        Permission::create(['name' => 'view plot dimensions']);
+        Permission::create(['name' => 'create plot dimensions']);
+        Permission::create(['name' => 'store plot dimensions']);
+        Permission::create(['name' => 'edit plot dimensions']);
+        Permission::create(['name' => 'update plot dimensions']);
+        Permission::create(['name' => 'delete plot dimensions']);
+        Permission::create(['name' => 'restore plot dimensions']);
 
         $user=UserAlias::find(1);
         $user->assignRole(1);

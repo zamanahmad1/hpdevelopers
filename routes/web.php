@@ -154,6 +154,17 @@ Route::get('plotinventories/{plotInventory}/edit',[\App\Http\Controllers\Plots\P
 Route::put('plotinventories/{plotInventory}',[\App\Http\Controllers\Plots\PlotInventoryController::class,'update'])->middleware('permission:update plot inventories')->name('plotinventories.update');
 Route::delete('plotinventories/{plotInventory}',[\App\Http\Controllers\Plots\PlotInventoryController::class ,'destroy'])->middleware('permission:delete plot inventories')->name('plotinventories.destroy');
 Route::put('plotinventories/restore/{plotInventory}',[\App\Http\Controllers\Plots\PlotInventoryController::class,'restore'])->middleware('permission:restore plot inventories')->name('plotinventories.restore');
+//for Plot Price
+Route::get('plotprices',[\App\Http\Controllers\Plots\PlotPriceController::class,'index'])->middleware('permission:view plot prices')->name('plotprices.index');
+Route::get('plotprices/update',[\App\Http\Controllers\Plots\PlotPriceController::class,'update'])->middleware('permission:update plot prices')->name('plotprices.update');
+//for Plot Dimensios
+Route::get('plotdimensions',[\App\Http\Controllers\Plots\PlotDimensionController::class,'index'])->middleware('permission:view plot dimensions')->name('plotdimensions.index');
+Route::get('plotdimensions/create',[\App\Http\Controllers\Plots\PlotDimensionController::class,'create'])->middleware('permission:create plot dimensions')->name('plotdimensions.create');
+Route::post('plotdimensions',[\App\Http\Controllers\Plots\PlotDimensionController::class,'store'])->middleware('permission:store plot dimensions')->name('plotdimensions.store');
+Route::get('plotdimensions/{plotDimension}/edit',[\App\Http\Controllers\Plots\PlotDimensionController::class,'edit'])->middleware('permission:edit plot dimensions')->name('plotdimensions.edit');
+Route::put('plotdimensions/{plotDimension}',[\App\Http\Controllers\Plots\PlotDimensionController::class,'update'])->middleware('permission:update plot dimensions')->name('plotdimensions.update');
+//Route::delete('plotdimensions/{plotDimension}',[\App\Http\Controllers\Plots\PlotDimensionController::class ,'destroy'])->middleware('permission:delete plot dimensions')->name('plotdimensions.destroy');
+//Route::put('plotdimensions/restore/{plotDimension}',[\App\Http\Controllers\Plots\PlotDimensionController::class,'restore'])->middleware('permission:restore plot dimensions')->name('plotdimensions.restore');
 //Dashboard
 Route::get('/Dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('Dashboard');
 

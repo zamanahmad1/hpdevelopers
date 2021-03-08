@@ -279,7 +279,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </ul>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{route('projects.index')}}" class="nav-link">
+                                <a href="{{route('plotprices.index')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Plot Prices</p>
                                 </a>
@@ -287,7 +287,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </ul>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{route('projects.index')}}" class="nav-link">
+                                <a href="{{route('plotdimensions.index')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Plot Dimensions</p>
                                 </a>

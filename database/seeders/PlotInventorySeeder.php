@@ -136,6 +136,7 @@ class PlotInventorySeeder extends Seeder
             'updated_at'=> date('Y-m-d H:i:s')
         ]]);
         $this->call(PlotPriceSeeder::class);
+        $this->call(PlotDimensionSeeder::class);
 
     }
 }
