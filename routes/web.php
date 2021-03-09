@@ -154,6 +154,7 @@ Route::get('plotinventories/{plotInventory}/edit',[\App\Http\Controllers\Plots\P
 Route::put('plotinventories/{plotInventory}',[\App\Http\Controllers\Plots\PlotInventoryController::class,'update'])->middleware('permission:update plot inventories')->name('plotinventories.update');
 Route::delete('plotinventories/{plotInventory}',[\App\Http\Controllers\Plots\PlotInventoryController::class ,'destroy'])->middleware('permission:delete plot inventories')->name('plotinventories.destroy');
 Route::put('plotinventories/restore/{plotInventory}',[\App\Http\Controllers\Plots\PlotInventoryController::class,'restore'])->middleware('permission:restore plot inventories')->name('plotinventories.restore');
+Route::get('plotinventories/{plotInventory}/details',[\App\Http\Controllers\plots\PlotInventoryController::class,'show'])->middleware('permission:show plot inventories')->name('plotinventories.show');
 //for Plot Price
 Route::get('plotprices',[\App\Http\Controllers\Plots\PlotPriceController::class,'index'])->middleware('permission:view plot prices')->name('plotprices.index');
 Route::get('plotprices/update',[\App\Http\Controllers\Plots\PlotPriceController::class,'update'])->middleware('permission:update plot prices')->name('plotprices.update');
@@ -165,6 +166,15 @@ Route::get('plotdimensions/{plotDimension}/edit',[\App\Http\Controllers\Plots\Pl
 Route::put('plotdimensions/{plotDimension}',[\App\Http\Controllers\Plots\PlotDimensionController::class,'update'])->middleware('permission:update plot dimensions')->name('plotdimensions.update');
 //Route::delete('plotdimensions/{plotDimension}',[\App\Http\Controllers\Plots\PlotDimensionController::class ,'destroy'])->middleware('permission:delete plot dimensions')->name('plotdimensions.destroy');
 //Route::put('plotdimensions/restore/{plotDimension}',[\App\Http\Controllers\Plots\PlotDimensionController::class,'restore'])->middleware('permission:restore plot dimensions')->name('plotdimensions.restore');
+//for Member Profile
+Route::get('memberprofiles',[\App\Http\Controllers\Members\MemberProfileController::class,'index'])->middleware('permission:view member profiles')->name('memberprofiles.index');
+Route::get('memberprofiles/create',[\App\Http\Controllers\Members\MemberProfileController::class,'create'])->middleware('permission:create member profiles')->name('memberprofiles.create');
+Route::post('memberprofiles',[\App\Http\Controllers\Members\MemberProfileController::class,'store'])->middleware('permission:store member profiles')->name('memberprofiles.store');
+Route::get('memberprofiles/{memberProfile}/edit',[\App\Http\Controllers\Members\MemberProfileController::class,'edit'])->middleware('permission:edit member profiles')->name('memberprofiles.edit');
+Route::put('memberprofiles/{memberProfile}',[\App\Http\Controllers\Members\MemberProfileController::class,'update'])->middleware('permission:update member profiles')->name('memberprofiles.update');
+Route::delete('memberprofiles/{memberProfile}',[\App\Http\Controllers\Members\MemberProfileController::class ,'destroy'])->middleware('permission:delete member profiles')->name('memberprofiles.destroy');
+Route::put('memberprofiles/restore/{memberProfile}',[\App\Http\Controllers\Members\MemberProfileController::class,'restore'])->middleware('permission:restore member profiles')->name('memberprofiles.restore');
+Route::get('memberprofiles/{memberProfile}/details',[\App\Http\Controllers\Members\MemberProfileController::class,'show'])->middleware('permission:show member profiles')->name('memberprofiles.show');
 //Dashboard
 Route::get('/Dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('Dashboard');
 

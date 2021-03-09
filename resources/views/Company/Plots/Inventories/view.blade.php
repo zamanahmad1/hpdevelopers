@@ -79,7 +79,7 @@
                                             @foreach($plotInventory as $pi)
                                                 <tr role="row" class="odd">
                                                     <td class="dtr-control sorting_1" tabindex="0">{{$pi->id}}</td>
-                                                    <td>{{$pi->name}}</td>
+                                                    <td><a href="plotinventories/{{$pi->id}}/details"> {{$pi->name}}</a></td>
                                                     <td>{{$pi->code}}</td>
                                                     <td>{{$pi->description}}</td>
                                                     <td>{{$street[$pi->street_code]}}</td>

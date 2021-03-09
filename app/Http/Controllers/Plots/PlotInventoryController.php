@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\plots;
 
 use App\Http\Controllers\Controller;
+use App\Models\Block;
 use App\Models\PlotAvailability;
 use App\Models\PlotCategory;
 use App\Models\PlotDimension;
@@ -13,6 +14,8 @@ use App\Models\PlotShape;
 use App\Models\PlotSize;
 use App\Models\PlotStatus;
 use App\Models\PlotType;
+use App\Models\Sector;
+use App\Models\Society;
 use App\Models\Street;
 use Illuminate\Http\Request;
 
@@ -147,7 +150,29 @@ class PlotInventoryController extends Controller
      */
     public function show(PlotInventory $plotInventory)
     {
-        //
+
+        $arr['plotInventory']=$plotInventory;
+        $arr['street']=Street::where('code',$plotInventory->street_code)->first();
+        $arr['block']=Block::where('code',$arr['street']->block_code)->first();
+        $arr['sector']=Sector::where('code',$arr['block']->sector_code)->first();
+        $arr['society']=Society::where('code',$arr['sector']->society_code)->first();
+        $arr['plotSize']=PlotSize::where('code',$plotInventory->plotsize_code)->first();
+        $arr['plotCategory']=PlotCategory::where('code',$plotInventory->plotcategory_code)->first();
+        $arr['plotType']=PlotType::where('code',$plotInventory->plottype_code)->first();
+        $arr['plotStatus']=PlotStatus::where('code',$plotInventory->plotstatus_code)->first();
+        $arr['plotShape']=PlotShape::where('code',$plotInventory->shape_code)->first();
+        $arr['plotAvailability']=PlotAvailability::where('code',$plotInventory->plotavailability_code)->first();
+        if ($plotInventory->inhensivefeature_code != ''){
+            $temp=explode(',',$plotInventory->inhensivefeature_code);
+            $inhensiveFeature=array();
+            foreach ($temp as $t){
+                $inhensiveFeature[$t]=PlotInhensiveFeature::where('code',$t)->get();
+            }
+            $arr['temp']=$temp;
+            $arr['inhensiveFeature']=$inhensiveFeature;
+
+        }
+        return  view('Company.Plots.Inventories.detail')->with($arr);
     }
 
     /**
