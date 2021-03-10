@@ -173,6 +173,24 @@ class RolePermissionSeeder extends Seeder
         Permission::create(['name' => 'update plot dimensions']);
         //Permission::create(['name' => 'delete plot dimensions']);
         //Permission::create(['name' => 'restore plot dimensions']);
+        //Country
+        Permission::create(['name' => 'view countries']);
+        Permission::create(['name' => 'create countries']);
+        Permission::create(['name' => 'store countries']);
+        Permission::create(['name' => 'edit countries']);
+        Permission::create(['name' => 'update countries']);
+        Permission::create(['name' => 'delete countries']);
+        Permission::create(['name' => 'restore countries']);
+        Permission::create(['name' => 'show countries']);
+        //Provinces
+        Permission::create(['name' => 'view provinces']);
+        Permission::create(['name' => 'create provinces']);
+        Permission::create(['name' => 'store provinces']);
+        Permission::create(['name' => 'edit provinces']);
+        Permission::create(['name' => 'update provinces']);
+        Permission::create(['name' => 'delete provinces']);
+        Permission::create(['name' => 'restore provinces']);
+        Permission::create(['name' => 'show provinces']);
         //Member Profiles
         Permission::create(['name' => 'view member profiles']);
         Permission::create(['name' => 'create member profiles']);

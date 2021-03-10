@@ -166,6 +166,22 @@ Route::get('plotdimensions/{plotDimension}/edit',[\App\Http\Controllers\Plots\Pl
 Route::put('plotdimensions/{plotDimension}',[\App\Http\Controllers\Plots\PlotDimensionController::class,'update'])->middleware('permission:update plot dimensions')->name('plotdimensions.update');
 //Route::delete('plotdimensions/{plotDimension}',[\App\Http\Controllers\Plots\PlotDimensionController::class ,'destroy'])->middleware('permission:delete plot dimensions')->name('plotdimensions.destroy');
 //Route::put('plotdimensions/restore/{plotDimension}',[\App\Http\Controllers\Plots\PlotDimensionController::class,'restore'])->middleware('permission:restore plot dimensions')->name('plotdimensions.restore');
+//for Countries
+Route::get('countries',[\App\Http\Controllers\Location\CountryController::class,'index'])->middleware('permission:view countries')->name('countries.index');
+Route::get('countries/create',[\App\Http\Controllers\Location\CountryController::class,'create'])->middleware('permission:create countries')->name('countries.create');
+Route::post('countries',[\App\Http\Controllers\Location\CountryController::class,'store'])->middleware('permission:store countries')->name('countries.store');
+Route::get('countries/{country}/edit',[\App\Http\Controllers\Location\CountryController::class,'edit'])->middleware('permission:edit countries')->name('countries.edit');
+Route::put('countries/{country}',[\App\Http\Controllers\Location\CountryController::class,'update'])->middleware('permission:update countries')->name('countries.update');
+Route::delete('countries/{country}',[\App\Http\Controllers\Location\CountryController::class ,'destroy'])->middleware('permission:delete countries')->name('countries.destroy');
+Route::put('countries/restore/{country}',[\App\Http\Controllers\Location\CountryController::class,'restore'])->middleware('permission:restore countries')->name('countries.restore');
+//for Provinces
+Route::get('provinces',[\App\Http\Controllers\Location\ProvinceController::class,'index'])->middleware('permission:view provinces')->name('provinces.index');
+Route::get('provinces/create',[\App\Http\Controllers\Location\ProvinceController::class,'create'])->middleware('permission:create provinces')->name('provinces.create');
+Route::post('provinces',[\App\Http\Controllers\Location\ProvinceController::class,'store'])->middleware('permission:store provinces')->name('provinces.store');
+Route::get('provinces/{province}/edit',[\App\Http\Controllers\Location\ProvinceController::class,'edit'])->middleware('permission:edit provinces')->name('provinces.edit');
+Route::put('provinces/{province}',[\App\Http\Controllers\Location\ProvinceController::class,'update'])->middleware('permission:update provinces')->name('provinces.update');
+Route::delete('provinces/{province}',[\App\Http\Controllers\Location\ProvinceController::class ,'destroy'])->middleware('permission:delete provinces')->name('provinces.destroy');
+Route::put('provinces/restore/{province}',[\App\Http\Controllers\Location\ProvinceController::class,'restore'])->middleware('permission:restore provinces')->name('provinces.restore');
 //for Member Profile
 Route::get('memberprofiles',[\App\Http\Controllers\Members\MemberProfileController::class,'index'])->middleware('permission:view member profiles')->name('memberprofiles.index');
 Route::get('memberprofiles/create',[\App\Http\Controllers\Members\MemberProfileController::class,'create'])->middleware('permission:create member profiles')->name('memberprofiles.create');

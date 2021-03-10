@@ -40,6 +40,7 @@ class ProjectSeeder extends Seeder
 
         ]]);
         $this->call(SocietySeeder::class);
+        $this->call(LocationSeeder::class);
 
     }
 }

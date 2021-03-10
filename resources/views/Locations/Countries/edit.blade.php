@@ -5,13 +5,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Create New Society </h1>
+                        <h1>Edit Country </h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{route('Dashboard')}}">Dashboard</a></li>
-                            <li class="breadcrumb-item "><a href="{{route('societies.index')}}">Society List</a></li>
-                            <li class="breadcrumb-item active">Edit Society {{$society->id}}</li>
+                            <li class="breadcrumb-item "><a href="{{route('countries.index')}}">Country List</a></li>
+                            <li class="breadcrumb-item active">Edit Country {{$country->id}}</li>
                         </ol>
                     </div>
                 </div>
@@ -20,39 +20,26 @@
 
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">Create Society {{$society->id}} Form</h3>
+                <h3 class="card-title">Edit Country {{$country->id}} Form</h3>
             </div>
 
             <div class="card-body">
-                <form method="POST" action="{{ route('societies.update',$society) }}">
-                    @method('PUT')
+                <form method="POST" action="{{ route('countries.update',$country->id) }}">
                     @csrf
+                    @method('PUT')
                     <div class="row">
                         <div class="col-sm-6">
                             <!-- text input -->
                             <div class="form-group">
                                 <label>Name</label>
-                                <input type="text" name="name" id="name" class="form-control" value="{{$society->name}}">
+                                <input type="text" name="name" class="form-control" id="name" value="{{$country->name}}">
                             </div>
                         </div>
 
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Code</label>
-                                <input type="text" name="code" id="code" class="form-control" value="{{$society->code}}">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Project</label>
-                                <select name="project_code" id="project" class="form-control">
-                                    <option value="" name="project_code">Select Project</option>
-                                    @foreach($project as $p)
-                                        <option value="{{$p->code}}" @if($society->project_code==$p->code) selected @endif>{{$p->name}}</option>
-                                    @endforeach
-                                </select>
+                                <input type="text" name="code" class="form-control" id="code" value="{{$country->code}}">
                             </div>
                         </div>
                     </div>
@@ -60,7 +47,7 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label>Description</label>
-                                <textarea class="form-control" name="description" id="description" rows="5">{{$society->description}}</textarea>
+                                <textarea class="form-control" name="description" id="description" rows="5">{{$country->description}}</textarea>
                             </div>
                         </div>
                     </div>
@@ -77,22 +64,17 @@
             $(document).ready(function() {
                 $('#save').click(function (event){
                     if ($('#name').val()=='' ){
-                        alert('Society Name Cannot be Empty')
+                        alert('Country Name Cannot be Empty')
                         event.preventDefault();
                     }
                     if($('#code').val()=='' ){
-                        alert('Society Code Cannot be Empty')
-                        event.preventDefault();
-                    }
-                    if( $('#project').val()==''){
-                        alert('Select Project')
+                        alert('Country Code Cannot be Empty')
                         event.preventDefault();
                     }
                     if( $('#description').val()==''){
-                        alert('Society Description Cannot be Empty')
+                        alert('Country Description Cannot be Empty')
                         event.preventDefault();
                     }
-
                 })
             });
         </script>
