@@ -46,11 +46,11 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Country</label>
-                                <select name="country_code" id="country" class="form-control">
-                                    <option value="" name="country_code">Select Country</option>
-                                    @foreach($country as $p)
-                                        <option value="{{$p->code}}" @if($city->country_code==$p->code) selected @endif>{{$p->name}}</option>
+                                <label>Province</label>
+                                <select name="province_code" id="province" class="form-control">
+                                    <option value="" name="province_code">Select Province</option>
+                                    @foreach($province as $p)
+                                        <option value="{{$p->code}}" @if($city->province_code==$p->code) selected @endif>{{$p->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -84,8 +84,8 @@
                         alert('City Code Cannot be Empty')
                         event.preventDefault();
                     }
-                    if( $('#country').val()==''){
-                        alert('Select Country')
+                    if( $('#province').val()==''){
+                        alert('Select Province')
                         event.preventDefault();
                     }
                     if( $('#description').val()==''){

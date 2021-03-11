@@ -150,7 +150,8 @@ class PlotInventoryController extends Controller
      */
     public function show(PlotInventory $plotInventory)
     {
-
+        $arr['plotDimension']=PlotDimension::where('plot_code',$plotInventory->code)->get();
+        $arr['plotPrice']=PlotPrice::where('plot_code',$plotInventory->code)->first();
         $arr['plotInventory']=$plotInventory;
         $arr['street']=Street::where('code',$plotInventory->street_code)->first();
         $arr['block']=Block::where('code',$arr['street']->block_code)->first();

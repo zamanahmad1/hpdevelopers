@@ -136,6 +136,38 @@
                                                         </th>
                                                         <td>{{$plotInventory->description}}</td>
                                                     </tr>
+                                                    <tr role="row">
+                                                        <th class="sorting_asc  text-bold bg-success" tabindex="0"
+                                                            aria-controls="plotinventories_table" rowspan="1" colspan="1">INSTALLMENT PRICE
+                                                        </th>
+                                                        <td>{{$plotPrice->installment_price}}</td>
+                                                        <th class="sorting_asc  text-bold bg-success" tabindex="0"
+                                                            aria-controls="plotinventories_table" rowspan="1" colspan="1">CASH PRICE
+                                                        </th>
+                                                        <td>{{$plotPrice->cash_price}}</td>
+                                                    </tr>
+                                                    @php
+                                                        $x=1;
+                                                    @endphp
+                                                    @foreach($plotDimension as $pd)
+                                                        @if($x%2==1)
+                                                            <tr role="row">
+                                                                <th class="sorting_asc  text-bold bg-success text-uppercase" tabindex="0"
+                                                                    aria-controls="plotinventories_table" rowspan="1" colspan="1">{{$pd->name}}
+                                                                </th>
+                                                                <td>{{$pd->length}}</td>
+                                                        @else
+                                                                <th class="sorting_asc  text-bold bg-success text-uppercase" tabindex="0"
+                                                                    aria-controls="plotinventories_table" rowspan="1" colspan="1">{{$pd->name}}
+                                                                </th>
+                                                                <td>{{$pd->length}}</td>
+                                                            </tr>
+                                                        @endif
+                                                        @php
+                                                            $x++;
+                                                        @endphp
+                                                    @endforeach
+
                                                 </tbody>
 
                                         </table>

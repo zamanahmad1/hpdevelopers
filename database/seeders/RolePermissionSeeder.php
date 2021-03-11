@@ -21,7 +21,7 @@ class RolePermissionSeeder extends Seeder
         Role::create(['name' => 'Manager']);
         Role::create(['name' => 'Procurement']);
         Role::create(['name' => 'Accounts']);
-        Role::create(['name' => 'Confirm Lanti']);
+        Role::create(['name' => 'Data Entry Opreator']);
 
 
         Permission::create(['name' => 'Side Menu Employees Link']);
@@ -181,7 +181,6 @@ class RolePermissionSeeder extends Seeder
         Permission::create(['name' => 'update countries']);
         Permission::create(['name' => 'delete countries']);
         Permission::create(['name' => 'restore countries']);
-        Permission::create(['name' => 'show countries']);
         //Provinces
         Permission::create(['name' => 'view provinces']);
         Permission::create(['name' => 'create provinces']);
@@ -190,7 +189,14 @@ class RolePermissionSeeder extends Seeder
         Permission::create(['name' => 'update provinces']);
         Permission::create(['name' => 'delete provinces']);
         Permission::create(['name' => 'restore provinces']);
-        Permission::create(['name' => 'show provinces']);
+        //Cities
+        Permission::create(['name' => 'view cities']);
+        Permission::create(['name' => 'create cities']);
+        Permission::create(['name' => 'store cities']);
+        Permission::create(['name' => 'edit cities']);
+        Permission::create(['name' => 'update cities']);
+        Permission::create(['name' => 'delete cities']);
+        Permission::create(['name' => 'restore cities']);
         //Member Profiles
         Permission::create(['name' => 'view member profiles']);
         Permission::create(['name' => 'create member profiles']);

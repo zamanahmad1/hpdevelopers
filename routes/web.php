@@ -182,6 +182,14 @@ Route::get('provinces/{province}/edit',[\App\Http\Controllers\Location\ProvinceC
 Route::put('provinces/{province}',[\App\Http\Controllers\Location\ProvinceController::class,'update'])->middleware('permission:update provinces')->name('provinces.update');
 Route::delete('provinces/{province}',[\App\Http\Controllers\Location\ProvinceController::class ,'destroy'])->middleware('permission:delete provinces')->name('provinces.destroy');
 Route::put('provinces/restore/{province}',[\App\Http\Controllers\Location\ProvinceController::class,'restore'])->middleware('permission:restore provinces')->name('provinces.restore');
+//for Cities
+Route::get('cities',[\App\Http\Controllers\Location\CityController::class,'index'])->middleware('permission:view cities')->name('cities.index');
+Route::get('cities/create',[\App\Http\Controllers\Location\CityController::class,'create'])->middleware('permission:create cities')->name('cities.create');
+Route::post('cities',[\App\Http\Controllers\Location\CityController::class,'store'])->middleware('permission:store cities')->name('cities.store');
+Route::get('cities/{city}/edit',[\App\Http\Controllers\Location\CityController::class,'edit'])->middleware('permission:edit cities')->name('cities.edit');
+Route::put('cities/{city}',[\App\Http\Controllers\Location\CityController::class,'update'])->middleware('permission:update cities')->name('cities.update');
+Route::delete('cities/{city}',[\App\Http\Controllers\Location\CityController::class ,'destroy'])->middleware('permission:delete cities')->name('cities.destroy');
+Route::put('cities/restore/{city}',[\App\Http\Controllers\Location\CityController::class,'restore'])->middleware('permission:restore cities')->name('cities.restore');
 //for Member Profile
 Route::get('memberprofiles',[\App\Http\Controllers\Members\MemberProfileController::class,'index'])->middleware('permission:view member profiles')->name('memberprofiles.index');
 Route::get('memberprofiles/create',[\App\Http\Controllers\Members\MemberProfileController::class,'create'])->middleware('permission:create member profiles')->name('memberprofiles.create');

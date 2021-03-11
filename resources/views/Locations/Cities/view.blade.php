@@ -29,7 +29,7 @@
                                     <div class="col-sm-12 col-md-6">
                                         <p>
                                             <a href="{{ route('cities.create') }}" class="btn btn-success">Add New
-                                                Province</a>
+                                                City</a>
                                         </p>
                                     </div>
                                 </div>

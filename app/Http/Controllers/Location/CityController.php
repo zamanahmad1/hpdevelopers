@@ -63,7 +63,7 @@ class CityController extends Controller
         $city->name=$request->name;
         $city->code=$request->code;
         $city->description=$request->description;
-        $city->city_code=$request->city_code;
+        $city->province_code=$request->province_code;
         $city->save();
         return redirect()->route('cities.index');
     }
