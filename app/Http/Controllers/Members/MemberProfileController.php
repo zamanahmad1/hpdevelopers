@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class MemberProfileController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +19,16 @@ class MemberProfileController extends Controller
      */
     public function index()
     {
-        //
+        if (auth()->user()->hasRole('Administrator')){
+
+
+            $arr['memberProfile']=MemberProfile::withTrashed()->get();
+            return view('Company.Members.view')->with($arr);
+        }else {
+
+            $arr['memberProfile'] = MemberProfile::all();
+            return view('Company.Plots.Inventories.view')->with($arr);
+        }
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\MemberProfile;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -137,6 +138,7 @@ class PlotInventorySeeder extends Seeder
         ]]);
         $this->call(PlotPriceSeeder::class);
         $this->call(PlotDimensionSeeder::class);
+        $this->call(MemberProfileSeeder::class);
 
     }
 }
