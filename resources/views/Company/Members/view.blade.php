@@ -47,7 +47,13 @@
                                                     aria-controls="memberprofiles_table" rowspan="1" colspan="1">ID
                                                 </th>
                                                 <th class="sorting  text-bold bg-primary" tabindex="0"
-                                                    aria-controls="memberprofiles_table" rowspan="1" colspan="1"> Member Profile  Name
+                                                    aria-controls="memberprofiles_table" rowspan="1" colspan="1">Member Profile Picture
+                                                </th>
+                                                <th class="sorting  text-bold bg-primary" tabindex="0"
+                                                    aria-controls="memberprofiles_table" rowspan="1" colspan="1">Name
+                                                </th>
+                                                <th class="sorting  text-bold bg-primary" tabindex="0"
+                                                    aria-controls="memberprofiles_table" rowspan="1" colspan="1">Father Name
                                                 </th>
                                                 <th class="sorting  text-bold bg-primary" tabindex="0"
                                                     aria-controls="memberprofiles_table" rowspan="1" colspan="1">Member Profile  Code
@@ -55,12 +61,6 @@
                                                 <th class="sorting  text-bold bg-primary" tabindex="0"
                                                     aria-controls="memberprofiles_table" rowspan="1" colspan="1">Member Profile
                                                     Description
-                                                </th>
-                                                <th class="sorting  text-bold bg-primary" tabindex="0"
-                                                    aria-controls="memberprofiles_table" rowspan="1" colspan="1">Street Name
-                                                </th>
-                                                <th class="sorting  text-bold bg-primary" tabindex="0"
-                                                    aria-controls="memberprofiles_table" rowspan="1" colspan="1">Availability
                                                 </th>
                                                 <th class="sorting  text-bold bg-primary" tabindex="0"
                                                     aria-controls="memberprofiles_table" rowspan="1" colspan="1">Creation Date
@@ -79,11 +79,11 @@
                                             @foreach($memberProfile as $mp)
                                                 <tr role="row" class="odd">
                                                     <td class="dtr-control sorting_1" tabindex="0">{{$mp->id}}</td>
+                                                    <td class="text-center"><img src="../storage/memberprofile/{{$mp->code}}/{{$mp->picture}}" height="100px" width="100px"></td>
                                                     <td><a href="memberprofiles/{{$mp->id}}/details"> {{$mp->name}}</a></td>
+                                                    <td>{{$mp->father_name}}</td>
                                                     <td>{{$mp->code}}</td>
                                                     <td>{{$mp->description}}</td>
-                                                    <td></td>
-                                                    <td ></td>
                                                     <td>{{$mp->created_at}}</td>
                                                     <td>{{$mp->updated_at}}</td>
                                                     <td>
