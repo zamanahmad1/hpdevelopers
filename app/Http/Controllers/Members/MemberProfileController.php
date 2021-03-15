@@ -38,7 +38,7 @@ class MemberProfileController extends Controller
      */
     public function create()
     {
-        //
+        return view('Company.Members.create');
     }
 
     /**
