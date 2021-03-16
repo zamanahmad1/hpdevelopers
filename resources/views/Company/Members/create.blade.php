@@ -5,13 +5,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Create New Member </h1>
+                        <h1>Create New Member Profile </h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{route('Dashboard')}}">Dashboard</a></li>
-                            <li class="breadcrumb-item "><a href="{{route('memberprofiles.index')}}">Member List</a></li>
-                            <li class="breadcrumb-item active">Create New Member</li>
+                            <li class="breadcrumb-item "><a href="{{route('memberprofiles.index')}}">Member Profile List</a></li>
+                            <li class="breadcrumb-item active">Create New Member Profile</li>
                         </ol>
                     </div>
                 </div>
@@ -20,11 +20,11 @@
 
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">Create New Member Form</h3>
+                <h3 class="card-title">Create New Member Profile Form</h3>
             </div>
 
             <div class="card-body">
-                <form method="POST" action="{{ route('memberprofiles.store') }}">
+                <form method="POST" action="{{ route('memberprofiles.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-sm-6">
@@ -88,26 +88,84 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Mobile Number</label>
-                                <input type="number" name="mobile_no" id="mobile_no" class="form-control">
+                                <input type="text" name="mobile_no" id="mobile_no"  class="form-control">
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>LandLine Number</label>
-                                <input type="number" name="landline_no" id="landline_no" class="form-control">
+                                <label>Resedential Number</label>
+                                <input type="text" name="resedential_no" id="resedential_no" class="form-control">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Inhensive Features</label>
-                                {{--@foreach($plotInhensiveFeature as $pif)
-                                    <div class="custom-control custom-checkbox pl-5">
-                                        <input class="custom-control-input" name="inhensiveFeature[]" type="checkbox" id="{{$pif->id}}" value="{{$pif->code}}">
-                                        <label for={{$pif->id}} class="custom-control-label">{{$pif->name}}</label>
-                                    </div>
-                                @endforeach--}}
+                                <label>Notification Number</label>
+                                <input type="text" name="notification_no" id="notification_no" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Picture</label>
+                                <input type="file" name="picture" id="picture" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>CNIC Front</label>
+                                <input type="file" name="cnic_front" id="cnic_front" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>CNIC Back</label>
+                                <input type="file" name="cnic_back" id="cnic_back" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Country</label>
+                                <select name="country" id="country" class="form-control">
+                                    <option value="">Select Country</option>
+                                    @foreach($country as $c)
+                                        <option value="{{$c->code}}">{{$c->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Province</label>
+                                <select name="province" id="province" class="form-control">
+                                    <option value="">Select Province</option>
+                                    @foreach($province as $p)
+                                        <option value="{{$p->code}}">{{$p->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>City</label>
+                                <select name="city" id="city" class="form-control">
+                                    <option value="">Select City</option>
+                                    @foreach($city as $c)
+                                        <option value="{{$c->code}}">{{$c->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input type="email" name="email" id="email" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -132,51 +190,83 @@
             $(document).ready(function() {
                 $('#save').click(function (event){
                     if ($('#name').val()=='' ){
-                        alert('Plot Name Cannot be Empty')
+                        alert('Member Profile Name Cannot be Empty')
                         event.preventDefault();
                     }
                     if($('#code').val()=='' ){
-                        alert('Plot Code Cannot be Empty')
+                        alert('Member Profile Code Cannot be Empty')
                         event.preventDefault();
                     }
-                    if( $('#area').val()==''){
-                        alert('Plot Area Cannot be Empty')
+                    if( $('#cnic').val()==''){
+                        alert('Member Profile CNIC Cannot be Empty')
                         event.preventDefault();
                     }
-                    if( $('#street').val()==''){
-                        alert('Plot Street Cannot be Empty')
+                    if( $('#dob').val()==''){
+                        alert('Member Profile Date of Birth Cannot be Empty')
                         event.preventDefault();
                     }
-                    if( $('#size').val()==''){
-                        alert('Plot Size Cannot be Empty')
+                    if( $('#father_name').val()==''){
+                        alert('Member Profile Father Name Cannot be Empty')
                         event.preventDefault();
                     }
                     if( $('#category').val()==''){
-                        alert('Plot Category Cannot be Empty')
+                        alert('Member Profile Category Cannot be Empty')
                         event.preventDefault();
                     }
-                    if( $('#type').val()==''){
-                        alert('Plot Type Cannot be Empty')
+                    if( $('#address').val()==''){
+                        alert('Member Profile Address Cannot be Empty')
                         event.preventDefault();
                     }
-                    if( $('#status').val()==''){
-                        alert('Plot Status Cannot be Empty')
+                    if( $('#cnic_issuance').val()==''){
+                        alert('Member Profile CNIC Issuance Date Cannot be Empty')
                         event.preventDefault();
                     }
-                    if( $('#shape').val()==''){
-                        alert('Plot Shape Cannot be Empty')
+                    if( $('#cnic_expiry').val()==''){
+                        alert('Member Profile CNIC Expiry Date Cannot be Empty')
                         event.preventDefault();
                     }
-                    if( $('#availability').val()==''){
-                        alert('Plot Availability Cannot be Empty')
+                    if( $('#mobile_no').val()==''){
+                        alert('Member Profile Mobile Number Cannot be Empty')
                         event.preventDefault();
                     }
-                    if( $('#description').val()==''){
-                        alert('Plot Description Cannot be Empty')
+                    if( $('#resedential_no').val()==''){
+                        alert('Member Profile Resedential Number Cannot be Empty')
                         event.preventDefault();
                     }
-                    if ($('#area').val() <=0){
-                        alert('Plot Description Cannot be Zero or Negitive')
+                    if( $('#notification_no').val()==''){
+                        alert('Member Profile Notification Number Cannot be Empty')
+                        event.preventDefault();
+                    }
+                    if( $('#picture').val()==''){
+                        alert('Select Member Profile Picture')
+                        event.preventDefault();
+                    }
+                    if( $('#cnic_front').val()==''){
+                        alert('Select Member Profile CNIC Front Picture')
+                        event.preventDefault();
+                    }
+                    if ($('#cnic_back').val() <=0){
+                        alert('Select Member Profile CNIC Back Picture')
+                        event.preventDefault();
+                    }
+                    if ($('#country').val() <=0){
+                        alert('Select Country')
+                        event.preventDefault();
+                    }
+                    if ($('#provicne').val() <=0){
+                        alert('Select Province')
+                        event.preventDefault();
+                    }
+                    if ($('#city').val() <=0){
+                        alert('Select City')
+                        event.preventDefault();
+                    }
+                    if ($('#email').val() <=0){
+                        alert('Member Profile Email Address Cannot be Empty')
+                        event.preventDefault();
+                    }
+                    if ($('#description').val() <=0){
+                        alert('Member Profile Description Cannot be Empty')
                         event.preventDefault();
                     }
 

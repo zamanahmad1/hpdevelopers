@@ -19,6 +19,7 @@ class CreateMemberProfilesTable extends Migration
             $table->string('code')->unique();
             $table->string('cnic')->unique();
             $table->date('dob');
+            $table->string('email');
             $table->string('father_name');
             $table->string('address');
             $table->date('cnic_issuance');

@@ -19,6 +19,7 @@ class MemberProfileSeeder extends Seeder
             'code' => 'mem1',
             'cnic' => '4567890345678',
             'dob' => '2020-12-04',
+            'email' => 'awais@gmail.com',
             'father_name' => 'javed',
             'address' => 'jfdljfldsfsdl vljvjv',
             'cnic_issuance' => '2020-12-11',
@@ -41,6 +42,7 @@ class MemberProfileSeeder extends Seeder
             'code' => 'mem2',
             'cnic' => '3520158936721',
             'dob' => '2020-12-12',
+            'email' => 'suqlain@gmail.com',
             'father_name' => 'Syed Raza',
             'address' => 'ho # 968 canal view society',
             'cnic_issuance' => '2020-12-12',
@@ -63,6 +65,7 @@ class MemberProfileSeeder extends Seeder
             'code' => 'mem3',
             'cnic' => '3510156789112',
             'dob' => '2020-12-05',
+            'email' => 'qasim@gmail.com',
             'father_name' => 'Rana',
             'address' => 'ho # 465 F-block johar town Lahore.',
             'cnic_issuance' => '2020-12-11',
@@ -85,6 +88,7 @@ class MemberProfileSeeder extends Seeder
             'code' => 'mem4',
             'cnic' => '3530113213541',
             'dob' => '2020-12-04',
+            'email' => 'ali@gmail.com',
             'father_name' => 'Rana',
             'address' => 'ho #90 itfeeaq town Lahore',
             'cnic_issuance' => '2020-12-11',
@@ -107,6 +111,7 @@ class MemberProfileSeeder extends Seeder
             'code' => 'mem5',
             'cnic' => '3530113213543',
             'dob' => '2020-12-04',
+            'email' => 'lodhi@gmail.com',
             'father_name' => 'Zubair',
             'address' => 'h # 465 sallai mor faisalabad',
             'cnic_issuance' => '2020-12-11',
@@ -129,6 +134,7 @@ class MemberProfileSeeder extends Seeder
             'code' => 'mem6',
             'cnic' => '351121334568',
             'dob' => '2020-12-26',
+            'email' => 'basharat@gmail.com',
             'father_name' => 'Rana',
             'address' => 'h# 420 gulshan-e-ravi lahore',
             'cnic_issuance' => '2020-12-11',
@@ -145,7 +151,6 @@ class MemberProfileSeeder extends Seeder
             'description' => 'Basharat IS A BUYER',
             'created_at'=> date('Y-m-d H:i:s'),
             'updated_at'=> date('Y-m-d H:i:s')
-
         ]]);
     }
 }
