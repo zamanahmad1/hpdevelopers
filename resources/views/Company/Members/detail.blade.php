@@ -20,7 +20,7 @@
         <section class="content">
             <div class="row">
                 <div class="col-sm-4">
-                    <div class="box box-primary"></div>
+                    <div class="box box-primary">
                         <div class="box-body box-profile text-center bg-dark">
                             <img class=" img-responsive img-circle mt-5" src="{{asset('storage/memberprofile/'.$memberProfile->code.'/'.$memberProfile->picture)}}" width="150px" height="150px" alt="User profile picture">
                             <h2 class="profile-username text-uppercase text-white mt-5 pb-4">{{$memberProfile->name}}</h2>
@@ -72,7 +72,6 @@
                                         </div>
                                         <div class="col-sm-6 text-right">
                                             <a class="pr-3"><img class=" img-responsive " src="{{asset('storage/memberprofile/'.$memberProfile->code.'/'.$memberProfile->cnic_back)}}" width="240px" height="160px" alt="cnic front picture"></a>
-                                            </a>
                                         </div>
                                     </div>
                                 </li>
@@ -113,6 +112,16 @@
                                         </div>
                                         <div class="col-sm-6 text-right">
                                             <a class="pr-3">{{$memberProfile->cnic_expiry}}</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item text-uppercase text-gray text-left">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <b class="pl-3">Email</b>
+                                        </div>
+                                        <div class="col-sm-6 text-right">
+                                            <a class="pr-3">{{$memberProfile->email}}</a>
                                         </div>
                                     </div>
                                 </li>
@@ -178,8 +187,7 @@
                                 </li>
                             </ul>
                         </div>
-
-
+                    </div>
                 </div>
             </div>
         </section>

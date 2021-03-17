@@ -31,7 +31,7 @@ class MemberProfileController extends Controller
         }else {
 
             $arr['memberProfile'] = MemberProfile::all();
-            return view('Company.Plots.Inventories.view')->with($arr);
+            return view('Company.Members.view')->with($arr);
         }
     }
 

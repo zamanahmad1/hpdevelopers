@@ -199,6 +199,14 @@ Route::put('memberprofiles/{memberProfile}',[\App\Http\Controllers\Members\Membe
 Route::delete('memberprofiles/{memberProfile}',[\App\Http\Controllers\Members\MemberProfileController::class ,'destroy'])->middleware('permission:delete member profiles')->name('memberprofiles.destroy');
 Route::put('memberprofiles/restore/{memberProfile}',[\App\Http\Controllers\Members\MemberProfileController::class,'restore'])->middleware('permission:restore member profiles')->name('memberprofiles.restore');
 Route::get('memberprofiles/{memberProfile}/details',[\App\Http\Controllers\Members\MemberProfileController::class,'show'])->middleware('permission:show member profiles')->name('memberprofiles.show');
+//for Memberships
+Route::get('memberships',[\App\Http\Controllers\Members\MemberShipController::class,'index'])->middleware('permission:view memberships')->name('memberships.index');
+Route::get('memberships/create',[\App\Http\Controllers\Members\MemberShipController::class,'create'])->middleware('permission:create memberships')->name('memberships.create');
+Route::post('memberships',[\App\Http\Controllers\Members\MemberShipController::class,'store'])->middleware('permission:store memberships')->name('memberships.store');
+Route::get('memberships/{memberShip}/edit',[\App\Http\Controllers\Members\MemberShipController::class,'edit'])->middleware('permission:edit memberships')->name('memberships.edit');
+Route::put('memberships/{memberShip}',[\App\Http\Controllers\Members\MemberShipController::class,'update'])->middleware('permission:update memberships')->name('memberships.update');
+Route::delete('memberships/{memberShip}',[\App\Http\Controllers\Members\MemberShipController::class ,'destroy'])->middleware('permission:delete memberships')->name('memberships.destroy');
+Route::put('memberships/restore/{memberShip}',[\App\Http\Controllers\Members\MemberShipController::class,'restore'])->middleware('permission:restore memberships')->name('memberships.restore');
 //Dashboard
 Route::get('/Dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('Dashboard');
 

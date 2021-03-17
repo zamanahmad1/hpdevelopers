@@ -206,6 +206,15 @@ class RolePermissionSeeder extends Seeder
         Permission::create(['name' => 'delete member profiles']);
         Permission::create(['name' => 'restore member profiles']);
         Permission::create(['name' => 'show member profiles']);
+        //Memberships
+        Permission::create(['name' => 'view memberships']);
+        Permission::create(['name' => 'create memberships']);
+        Permission::create(['name' => 'store memberships']);
+        Permission::create(['name' => 'edit memberships']);
+        Permission::create(['name' => 'update memberships']);
+        Permission::create(['name' => 'delete memberships']);
+        Permission::create(['name' => 'restore memberships']);
+
 
         $user=UserAlias::find(1);
         $user->assignRole(1);
