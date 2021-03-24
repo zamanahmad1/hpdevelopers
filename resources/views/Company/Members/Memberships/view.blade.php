@@ -47,9 +47,6 @@
                                                     aria-controls="memberships_table" rowspan="1" colspan="1">ID
                                                 </th>
                                                 <th class="sorting  text-bold bg-primary" tabindex="0"
-                                                    aria-controls="memberships_table" rowspan="1" colspan="1"> Membership Name
-                                                </th>
-                                                <th class="sorting  text-bold bg-primary" tabindex="0"
                                                     aria-controls="memberships_table" rowspan="1" colspan="1">Membership Code
                                                 </th>
                                                 <th class="sorting  text-bold bg-primary" tabindex="0"
@@ -77,10 +74,9 @@
                                             @foreach($memberShip as $ms)
                                                 <tr role="row" class="odd">
                                                     <td class="dtr-control sorting_1" tabindex="0">{{$ms->id}}</td>
-                                                    <td>{{$ms->name}}</td>
                                                     <td>{{$ms->code}}</td>
                                                     <td>{{$ms->description}}</td>
-                                                    <td>{{$society[$ms->society_code]}}</td>
+                                                    <td>{{$society[$ms->society_code]->name}}</td>
                                                     <td>{{$ms->created_at}}</td>
                                                     <td>{{$ms->updated_at}}</td>
                                                     <td>

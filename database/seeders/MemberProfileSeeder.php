@@ -152,5 +152,16 @@ class MemberProfileSeeder extends Seeder
             'created_at'=> date('Y-m-d H:i:s'),
             'updated_at'=> date('Y-m-d H:i:s')
         ]]);
+
+        DB::table('member_ships')->insert([
+            'code' => 'mem1GEHHS2012029559B',
+            'memberprofile_code' => 'mem1',
+            'society_code' => 'GEHHS',
+            'membertype' => 'B',
+            'description' => 'this is for member 1',
+            'created_at'=> date('Y-m-d H:i:s'),
+            'updated_at'=> date('Y-m-d H:i:s')
+        ]);
+
     }
 }
