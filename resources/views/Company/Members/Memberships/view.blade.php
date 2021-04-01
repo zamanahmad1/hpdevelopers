@@ -47,6 +47,9 @@
                                                     aria-controls="memberships_table" rowspan="1" colspan="1">ID
                                                 </th>
                                                 <th class="sorting  text-bold bg-primary" tabindex="0"
+                                                    aria-controls="memberships_table" rowspan="1" colspan="1">Members Name
+                                                </th>
+                                                <th class="sorting  text-bold bg-primary" tabindex="0"
                                                     aria-controls="memberships_table" rowspan="1" colspan="1">Membership Code
                                                 </th>
                                                 <th class="sorting  text-bold bg-primary" tabindex="0"
@@ -74,6 +77,7 @@
                                             @foreach($memberShip as $ms)
                                                 <tr role="row" class="odd">
                                                     <td class="dtr-control sorting_1" tabindex="0">{{$ms->id}}</td>
+                                                    <td><a href="memberprofiles/{{$memberProfile[$ms->memberprofile_code]->id}}/details"> {{$memberProfile[$ms->memberprofile_code]->name}}</a></td>
                                                     <td>{{$ms->code}}</td>
                                                     <td>{{$ms->description}}</td>
                                                     <td>{{$society[$ms->society_code]->name}}</td>

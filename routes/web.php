@@ -199,6 +199,7 @@ Route::put('memberprofiles/{memberProfile}',[\App\Http\Controllers\Members\Membe
 Route::delete('memberprofiles/{memberProfile}',[\App\Http\Controllers\Members\MemberProfileController::class ,'destroy'])->middleware('permission:delete member profiles')->name('memberprofiles.destroy');
 Route::put('memberprofiles/restore/{memberProfile}',[\App\Http\Controllers\Members\MemberProfileController::class,'restore'])->middleware('permission:restore member profiles')->name('memberprofiles.restore');
 Route::get('memberprofiles/{memberProfile}/details',[\App\Http\Controllers\Members\MemberProfileController::class,'show'])->middleware('permission:show member profiles')->name('memberprofiles.show');
+Route::post('memberprofileslist',[\App\Http\Controllers\Members\MemberProfileController::class,'memberProfileList'])->name('memberprofiles.list');
 //for Memberships
 Route::get('memberships',[\App\Http\Controllers\Members\MemberShipController::class,'index'])->middleware('permission:view memberships')->name('memberships.index');
 Route::get('memberships/create',[\App\Http\Controllers\Members\MemberShipController::class,'create'])->middleware('permission:create memberships')->name('memberships.create');

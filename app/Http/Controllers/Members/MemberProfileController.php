@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\City;
 use App\Models\Country;
 use App\Models\MemberProfile;
+use App\Models\MemberShip;
 use App\Models\PlotAvailability;
 use App\Models\Province;
 use Illuminate\Http\Request;
@@ -21,15 +22,35 @@ class MemberProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function memberProfileList(){
+        $society_code=$_POST['society_code'];
+        $memberProfile=memberProfile::withTrashed()->get();
+        $membership=memberShip::where('society_code',$society_code)
+            ->get();
+        $membership_array=array();
+        foreach ($membership as $ms){
+            $membership_array[$ms->memberprofile_code]=$ms;
+        }
+        $x=0;
+        $memberProfile_array=array();
+        foreach ($memberProfile as $mp){
+            if (!array_key_exists( $mp->code ,$membership_array ) ){
+                $memberProfile_array[$x]=$mp;
+                $x++;
+            }
+        }
+        return response()->json([
+            'memberProfiles' => $memberProfile_array
+        ]);
+    }
+
     public function index()
     {
         if (auth()->user()->hasRole('Administrator')){
-
-
             $arr['memberProfile']=MemberProfile::withTrashed()->get();
             return view('Company.Members.view')->with($arr);
         }else {
-
             $arr['memberProfile'] = MemberProfile::all();
             return view('Company.Members.view')->with($arr);
         }
