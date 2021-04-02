@@ -45,6 +45,28 @@ class MemberProfileController extends Controller
         ]);
     }
 
+    public function dealerProfileList(){
+        $society_code=$_POST['society_code'];
+        $memberProfile=memberProfile::withTrashed()->get();
+        $membership=dealerShip::where('society_code',$society_code)
+            ->get();
+        $membership_array=array();
+        foreach ($membership as $ms){
+            $membership_array[$ms->memberprofile_code]=$ms;
+        }
+        $x=0;
+        $memberProfile_array=array();
+        foreach ($memberProfile as $mp){
+            if (!array_key_exists( $mp->code ,$membership_array ) ){
+                $memberProfile_array[$x]=$mp;
+                $x++;
+            }
+        }
+        return response()->json([
+            'memberProfiles' => $memberProfile_array
+        ]);
+    }
+
     public function index()
     {
         if (auth()->user()->hasRole('Administrator')){

@@ -200,7 +200,9 @@ Route::delete('memberprofiles/{memberProfile}',[\App\Http\Controllers\Members\Me
 Route::put('memberprofiles/restore/{memberProfile}',[\App\Http\Controllers\Members\MemberProfileController::class,'restore'])->middleware('permission:restore member profiles')->name('memberprofiles.restore');
 Route::get('memberprofiles/{memberProfile}/details',[\App\Http\Controllers\Members\MemberProfileController::class,'show'])->middleware('permission:show member profiles')->name('memberprofiles.show');
 Route::post('memberprofileslist',[\App\Http\Controllers\Members\MemberProfileController::class,'memberProfileList'])->name('memberprofiles.list');
-//for Memberships
+Route::post('dealerprofileslist',[\App\Http\Controllers\Members\MemberProfileController::class,'dealerProfileList'])->name('dealerprofiles.list');
+
+//for MemberShips
 Route::get('memberships',[\App\Http\Controllers\Members\MemberShipController::class,'index'])->middleware('permission:view memberships')->name('memberships.index');
 Route::get('memberships/create',[\App\Http\Controllers\Members\MemberShipController::class,'create'])->middleware('permission:create memberships')->name('memberships.create');
 Route::post('memberships',[\App\Http\Controllers\Members\MemberShipController::class,'store'])->middleware('permission:store memberships')->name('memberships.store');
@@ -208,6 +210,14 @@ Route::get('memberships/{memberShip}/edit',[\App\Http\Controllers\Members\Member
 Route::put('memberships/{memberShip}',[\App\Http\Controllers\Members\MemberShipController::class,'update'])->middleware('permission:update memberships')->name('memberships.update');
 Route::delete('memberships/{memberShip}',[\App\Http\Controllers\Members\MemberShipController::class ,'destroy'])->middleware('permission:delete memberships')->name('memberships.destroy');
 Route::put('memberships/restore/{memberShip}',[\App\Http\Controllers\Members\MemberShipController::class,'restore'])->middleware('permission:restore memberships')->name('memberships.restore');
+//for Dealerships
+Route::get('dealerships',[\App\Http\Controllers\Members\DealerShipController::class,'index'])->middleware('permission:view dealerships')->name('dealerships.index');
+Route::get('dealerships/create',[\App\Http\Controllers\Members\DealerShipController::class,'create'])->middleware('permission:create dealerships')->name('dealerships.create');
+Route::post('dealerships',[\App\Http\Controllers\Members\DealerShipController::class,'store'])->middleware('permission:store dealerships')->name('dealerships.store');
+Route::get('dealerships/{dealerShip}/edit',[\App\Http\Controllers\Members\DealerShipController::class,'edit'])->middleware('permission:edit dealerships')->name('dealerships.edit');
+Route::put('dealerships/{dealerShip}',[\App\Http\Controllers\Members\DealerShipController::class,'update'])->middleware('permission:update dealerships')->name('dealerships.update');
+Route::delete('dealerships/{dealerShip}',[\App\Http\Controllers\Members\DealerShipController::class ,'destroy'])->middleware('permission:delete dealerships')->name('dealerships.destroy');
+Route::put('dealerships/restore/{dealerShip}',[\App\Http\Controllers\Members\DealerShipController::class,'restore'])->middleware('permission:restore dealerships')->name('dealerships.restore');
 //Dashboard
 Route::get('/Dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('Dashboard');
 

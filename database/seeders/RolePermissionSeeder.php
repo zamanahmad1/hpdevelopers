@@ -206,7 +206,7 @@ class RolePermissionSeeder extends Seeder
         Permission::create(['name' => 'delete member profiles']);
         Permission::create(['name' => 'restore member profiles']);
         Permission::create(['name' => 'show member profiles']);
-        //Memberships
+        //MemberShips
         Permission::create(['name' => 'view memberships']);
         Permission::create(['name' => 'create memberships']);
         Permission::create(['name' => 'store memberships']);
@@ -214,6 +214,14 @@ class RolePermissionSeeder extends Seeder
         Permission::create(['name' => 'update memberships']);
         Permission::create(['name' => 'delete memberships']);
         Permission::create(['name' => 'restore memberships']);
+        //Dealerships
+        Permission::create(['name' => 'view dealerships']);
+        Permission::create(['name' => 'create dealerships']);
+        Permission::create(['name' => 'store dealerships']);
+        Permission::create(['name' => 'edit dealerships']);
+        Permission::create(['name' => 'update dealerships']);
+        Permission::create(['name' => 'delete dealerships']);
+        Permission::create(['name' => 'restore dealerships']);
 
 
         $user=UserAlias::find(1);
