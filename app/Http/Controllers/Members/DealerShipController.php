@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Members;
 
 use App\Http\Controllers\Controller;
-use App\Models\Dealership;
+use App\Models\DealerShip;
 use App\Models\MemberProfile;
 use App\Models\Society;
 use Illuminate\Http\Request;
@@ -39,7 +39,7 @@ class DealerShipController extends Controller
             return view('Company.Members.DealerShips.view')->with($arr);
         }else {
 
-            $arr['dealerShip'] = Dealership::all();
+            $arr['dealerShip'] = DealerShip::all();
             $arr['society']=$temp;
             $arr['memberProfile']=$temp1;
             return view('Company.Members.DealerShips.view')->with($arr);
@@ -63,18 +63,33 @@ class DealerShipController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, DealerShip $dealerShip)
     {
-        //
+        $code=$request->memberprofile.$request->society_code.date('ymd').rand(1,99999).'D';
+        $dealerShip->code=$code;
+        $dealerShip->memberprofile_code=$request->memberprofile;
+        $dealerShip->society_code=$request->society_code;
+        $dealerShip->membertype='D';
+        $dealerShip->description=$request->description;
+        $dealerShip->save();
+        return redirect()->route('dealerships.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Dealership  $dealership
+     * @param  \App\Models\DealerShip  $dealerShip
      * @return \Illuminate\Http\Response
      */
-    public function show(Dealership $dealership)
+
+    public function restore($id){
+        $dealerShip=DealerShip::withTrashed()->where('id', $id)
+            ->first();
+        $dealerShip->restore();
+        return redirect()->route('dealerships.index');
+    }
+
+    public function show(DealerShip $dealerShip)
     {
         //
     }
@@ -82,34 +97,39 @@ class DealerShipController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Dealership  $dealership
+     * @param  \App\Models\DealerShip  $dealerShip
      * @return \Illuminate\Http\Response
      */
-    public function edit(Dealership $dealership)
+    public function edit(DealerShip $dealerShip)
     {
-        //
+        $arr['society']=Society::all();
+        $arr['dealerShip']=$dealerShip;
+        $arr['memberProfile']=MemberProfile::where('code',$dealerShip->memberprofile_code)
+            ->first();
+        return view('Company.Members.DealerShips.edit')->with($arr);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Dealership  $dealership
+     * @param  \App\Models\DealerShip  $dealerShip
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Dealership $dealership)
+    public function update(Request $request, DealerShip $dealerShip)
     {
-        //
+        return redirect()->route('dealerships.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Dealership  $dealership
+     * @param  \App\Models\DealerShip  $dealerShip
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Dealership $dealership)
+    public function destroy(DealerShip $dealerShip)
     {
-        //
+        $dealerShip->delete();
+        return redirect()->route('dealerships.index');
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Members;
 use App\Http\Controllers\Controller;
 use App\Models\City;
 use App\Models\Country;
+use App\Models\DealerShip;
 use App\Models\MemberProfile;
 use App\Models\MemberShip;
 use App\Models\PlotAvailability;

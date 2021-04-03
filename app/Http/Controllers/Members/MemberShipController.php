@@ -123,8 +123,8 @@ class MemberShipController extends Controller
         $memberShip->society_code=$request->society_code;
         $memberShip->membertype='B';
         $memberShip->description=$request->description;
-        $memberShip->save();
-        return redirect()->route('memberships.index');*/
+        $memberShip->save();*/
+        return redirect()->route('memberships.index');
     }
 
     /**
