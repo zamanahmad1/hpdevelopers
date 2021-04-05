@@ -222,6 +222,22 @@ class RolePermissionSeeder extends Seeder
         Permission::create(['name' => 'update dealerships']);
         Permission::create(['name' => 'delete dealerships']);
         Permission::create(['name' => 'restore dealerships']);
+        //Reservation Status
+        Permission::create(['name' => 'view reservation status']);
+        Permission::create(['name' => 'create reservation status']);
+        Permission::create(['name' => 'store reservation status']);
+        Permission::create(['name' => 'edit reservation status']);
+        Permission::create(['name' => 'update reservation status']);
+        Permission::create(['name' => 'delete reservation status']);
+        Permission::create(['name' => 'restore reservation status']);
+        //Reservation
+        Permission::create(['name' => 'view reservations']);
+        Permission::create(['name' => 'create reservations']);
+        Permission::create(['name' => 'store reservations']);
+        Permission::create(['name' => 'edit reservations']);
+        Permission::create(['name' => 'update reservations']);
+        Permission::create(['name' => 'delete reservations']);
+        Permission::create(['name' => 'restore reservations']);
 
 
         $user=UserAlias::find(1);

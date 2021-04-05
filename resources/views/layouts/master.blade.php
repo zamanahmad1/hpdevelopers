@@ -331,7 +331,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{route('plotinventories.index')}}" class="nav-link">
+                                <a href="{{route('reservationstatus.index')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Reservation Status</p>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('reservations.index')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Reservation</p>
                                 </a>
