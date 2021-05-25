@@ -39,5 +39,15 @@ class ReservationSeeder extends Seeder
             'created_at'=> date('Y-m-d H:i:s'),
             'updated_at'=> date('Y-m-d H:i:s')
         ]]);
+
+        DB::table('reservations')->insert([[
+            'plot_code' => 'p4',
+            'membership_code' => 'mem1GEHHS2012029559B',
+            'reserved_till' => '2021-01-25',
+            'reservation_status' => 'active',
+            'description' => 'this is for bla bla bla',
+            'created_at'=> date('Y-m-d H:i:s'),
+            'updated_at'=> date('Y-m-d H:i:s')
+        ]]);
     }
 }

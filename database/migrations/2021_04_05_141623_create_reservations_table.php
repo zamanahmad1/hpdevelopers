@@ -16,7 +16,7 @@ class CreateReservationsTable extends Migration
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
             $table->string('plot_code');
-            $table->string('membership_code');
+            $table->string('memberprofile_code');
             $table->date('reserved_till');
             $table->string('reservation_status');
             $table->longText('description');

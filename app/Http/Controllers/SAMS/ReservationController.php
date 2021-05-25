@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class ReservationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +19,22 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        //
+        $reservation_check=Reservation::all();
+        foreach ($reservation_check as $r){
+            if($r->reservation_status=='active'){
+                if(strtotime(date("y-m-d"))-strtotime($r->reserved_till)>0){
+                    $r->reservation_status='pending';
+                    $r->save();
+                }
+            }
+        }
+        if (auth()->user()->hasRole('Administrator')){
+            $arr['reservation']=Reservation::withTrashed()->get();
+            return view('Company.SAMS.Reservations.view')->with($arr);
+        }else{
+            $arr['reservation']=Reservation::all();
+            return view('Company.SAMS.Reservations.view')->with($arr);
+        }
     }
 
     /**
@@ -25,7 +44,7 @@ class ReservationController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**

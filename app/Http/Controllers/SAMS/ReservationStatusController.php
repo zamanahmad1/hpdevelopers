@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class ReservationStatusController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +19,13 @@ class ReservationStatusController extends Controller
      */
     public function index()
     {
-        //
+        if (auth()->user()->hasRole('Administrator')){
+            $arr['reservationStatus']=ReservationStatus::withTrashed()->get();
+            return view('Company.SAMS.Reservations.Status.view')->with($arr);
+        }else {
+            $arr['reservationStatus'] = ReservationStatus::all();
+            return view('Company.SAMS.Reservations.Status.view')->with($arr);
+        }
     }
 
     /**
@@ -25,7 +35,7 @@ class ReservationStatusController extends Controller
      */
     public function create()
     {
-        //
+        return view('Company.SAMS.Reservations.Status.create');
     }
 
     /**
@@ -34,9 +44,13 @@ class ReservationStatusController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request , ReservationStatus $reservationStatus)
     {
-        //
+        $reservationStatus->name=$request->name;
+        $reservationStatus->code=$request->code;
+        $reservationStatus->description=$request->description;
+        $reservationStatus->save();
+        return redirect()->route('reservationstatus.index');
     }
 
     /**
@@ -50,6 +64,13 @@ class ReservationStatusController extends Controller
         //
     }
 
+    public function restore($id){
+        $reservationStatus=ReservationStatus::withTrashed()->where('id', $id)
+            ->first();
+        $reservationStatus->restore();
+        return redirect()->route('reservationstatus.index');
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -58,7 +79,8 @@ class ReservationStatusController extends Controller
      */
     public function edit(ReservationStatus $reservationStatus)
     {
-        //
+        $arr['reservationStatus']=$reservationStatus;
+        return view('Company.SAMS.Reservations.Status.edit')->with($arr);
     }
 
     /**
@@ -70,7 +92,12 @@ class ReservationStatusController extends Controller
      */
     public function update(Request $request, ReservationStatus $reservationStatus)
     {
-        //
+        $reservationStatus->name=$request->name;
+        $reservationStatus->code=$request->code;
+        $reservationStatus->description=$request->description;
+        $reservationStatus->updated_at = date('Y-m-d H:i:s');
+        $reservationStatus->save();
+        return redirect()->route('reservationstatus.index');
     }
 
     /**
@@ -81,6 +108,7 @@ class ReservationStatusController extends Controller
      */
     public function destroy(ReservationStatus $reservationStatus)
     {
-        //
+        $reservationStatus->delete();
+        return redirect()->route('reservationstatus.index');
     }
 }
