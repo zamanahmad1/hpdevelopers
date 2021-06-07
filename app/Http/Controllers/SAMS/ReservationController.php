@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\SAMS;
 
 use App\Http\Controllers\Controller;
+use App\Models\MemberProfile;
+use App\Models\PlotInventory;
 use App\Models\Reservation;
+use App\Models\ReservationStatus;
 use Illuminate\Http\Request;
 
 class ReservationController extends Controller
@@ -19,6 +22,7 @@ class ReservationController extends Controller
      */
     public function index()
     {
+
         $reservation_check=Reservation::all();
         foreach ($reservation_check as $r){
             if($r->reservation_status=='active'){
@@ -29,9 +33,34 @@ class ReservationController extends Controller
             }
         }
         if (auth()->user()->hasRole('Administrator')){
+            $plots=array();
+            $memberProfiles=array();
+            $plot=PlotInventory::withTrashed()->get();
+            foreach($plot as $p){
+                $plots[$p->code]=$p;
+            }
+            $arr['plots']=$plots;
+            $memberProfile=MemberProfile::withTrashed()->get();
+            foreach($memberProfile as $mp){
+                $memberProfiles[$mp->code]=$mp;
+            }
+            $arr['memberProfiles']=$memberProfiles;
             $arr['reservation']=Reservation::withTrashed()->get();
             return view('Company.SAMS.Reservations.view')->with($arr);
+
         }else{
+            $plots=array();
+            $memberProfiles=array();
+            $plot=PlotInventory::all();
+            foreach($plot as $p){
+                $plots[$p->code]=$p;
+            }
+            $arr['plots']=$plots;
+            $memberProfile=MemberProfile::all();
+            foreach($memberProfile as $mp){
+                $memberProfiles[$mp->code]=$mp;
+            }
+            $arr['memberProfiles']=$memberProfiles;
             $arr['reservation']=Reservation::all();
             return view('Company.SAMS.Reservations.view')->with($arr);
         }
@@ -44,7 +73,11 @@ class ReservationController extends Controller
      */
     public function create()
     {
-
+        $arr['plotInventory']=PlotInventory::where('plotavailability_code','available')
+            ->get();
+        $arr['memberProfile']=MemberProfile::all();
+        $arr['reservationStatus']=ReservationStatus::all();
+        return view('Company.SAMS.Reservations.create')->with($arr);
     }
 
     /**

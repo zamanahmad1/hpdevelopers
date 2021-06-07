@@ -72,7 +72,7 @@ class PlotInventorySeeder extends Seeder
             'plotstatus_code' => 'developed' ,
             'plotsize_code' => 'M5',
             'inhensivefeature_code' => 'PF1,MB1,COR1',
-            'plotavailability_code' => 'available',
+            'plotavailability_code' => 'reserved',
             'created_at'=> date('Y-m-d H:i:s'),
             'updated_at'=> date('Y-m-d H:i:s')
         ],[

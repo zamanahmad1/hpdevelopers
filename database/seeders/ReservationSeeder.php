@@ -42,7 +42,7 @@ class ReservationSeeder extends Seeder
 
         DB::table('reservations')->insert([[
             'plot_code' => 'p4',
-            'membership_code' => 'mem1GEHHS2012029559B',
+            'memberprofile_code' => 'mem1',
             'reserved_till' => '2021-01-25',
             'reservation_status' => 'active',
             'description' => 'this is for bla bla bla',

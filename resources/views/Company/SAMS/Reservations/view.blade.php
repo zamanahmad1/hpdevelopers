@@ -81,8 +81,8 @@
                                             @foreach($reservation as $r)
                                                 <tr role="row" class="odd">
                                                     <td class="dtr-control sorting_1" tabindex="0">{{$r->id}}</td>
-                                                    <td>{{$r->plot_code}}</td>
-                                                    <td>{{$r->membership_code}}</td>
+                                                    <td class="text-uppercase"><a href="plotinventories/{{$plots[$r->plot_code]->id}}/details" target="_blank"> {{$plots[$r->plot_code]->name}}</a></td>
+                                                    <td class="text-uppercase"><a href="memberprofiles/{{$memberProfiles[$r->memberprofile_code]->id}}/details" target="_blank"> {{$memberProfiles[$r->memberprofile_code]->name}}</a></td>
                                                     <td>{{$r->reserved_till}}</td>
                                                     <td class=
                                                         @if($r->reservation_status=='active')
