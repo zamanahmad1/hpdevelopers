@@ -138,7 +138,6 @@ Route::put('plotinhensivefeatures/{plotInhensiveFeature}',[\App\Http\Controllers
 Route::delete('plotinhensivefeatures/{plotInhensiveFeature}',[\App\Http\Controllers\Plots\PlotInhensiveFeatureController::class ,'destroy'])->middleware('permission:delete plot inhensive features')->name('plotinhensivefeatures.destroy');
 Route::put('plotinhensivefeatures/restore/{plotInhensiveFeature}',[\App\Http\Controllers\Plots\PlotInhensiveFeatureController::class,'restore'])->middleware('permission:restore plot inhensive features')->name('plotinhensivefeatures.restore');
 //for Plot Size
-//for Plot Inhensive Features
 Route::get('plotsizes',[\App\Http\Controllers\Plots\PlotSizeController::class,'index'])->middleware('permission:view plot sizes')->name('plotsizes.index');
 Route::get('plotsizes/create',[\App\Http\Controllers\Plots\PlotSizeController::class,'create'])->middleware('permission:create plot sizes')->name('plotsizes.create');
 Route::post('plotsizes',[\App\Http\Controllers\Plots\PlotSizeController::class,'store'])->middleware('permission:store plot sizes')->name('plotsizes.store');
@@ -201,7 +200,7 @@ Route::put('memberprofiles/restore/{memberProfile}',[\App\Http\Controllers\Membe
 Route::get('memberprofiles/{memberProfile}/details',[\App\Http\Controllers\Members\MemberProfileController::class,'show'])->middleware('permission:show member profiles')->name('memberprofiles.show');
 Route::post('memberprofileslist',[\App\Http\Controllers\Members\MemberProfileController::class,'memberProfileList'])->name('memberprofiles.list');
 Route::post('dealerprofileslist',[\App\Http\Controllers\Members\MemberProfileController::class,'dealerProfileList'])->name('dealerprofiles.list');
-
+Route::post('memberprofiledetails',[\App\Http\Controllers\Members\MemberProfileController::class,'memberProfileDetails'])->name('memberprofiledetails');
 //for MemberShips
 Route::get('memberships',[\App\Http\Controllers\Members\MemberShipController::class,'index'])->middleware('permission:view memberships')->name('memberships.index');
 Route::get('memberships/create',[\App\Http\Controllers\Members\MemberShipController::class,'create'])->middleware('permission:create memberships')->name('memberships.create');

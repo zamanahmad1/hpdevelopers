@@ -97,10 +97,27 @@
             $(document).ready(function() {
                 $('#data').hide();
                 $('#memberprofile').change(function (event){
-                    alert(this.value);
-                    $('#data').empty();
-                    $('#data').show();
-                    $('#data').append('<div class="col-sm-6"><label>CNIC</label><input type="text" value=""></div>');
+                    $.ajax({
+                        url:"{{route('memberprofiledetails')}}",
+                        type:"POST",
+                        data:{
+                            code:$('#memberprofile').val(),
+                            _token:'{{csrf_token()}}'
+                        },
+                        success:function (data){
+                            data.memberProfile.forEach(function (member){
+                               var src='../storage/memberprofile/'+member.code+'/'+member.picture;
+                                $('#data').show();
+                                $('#data').empty();
+                                $('#data').append('<div class="col-sm-6"><div class="form-group"><label>Member Profile Picture</label><br><img src="'+src+'" height="150px" width="150px" alt=""></div></div>');
+                                $('#data').append('<div class="col-sm-6"><div class="form-group"><label>CNIC</label><h6>'+member.cnic+'</h6></div></div>');
+                            });
+
+                        },
+                        error:function (data, textStatus, errorThrown){
+                            console.log(data);
+                        },
+                    })
                 })
 
                 $('#save').click(function (event){

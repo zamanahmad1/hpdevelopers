@@ -24,6 +24,15 @@ class MemberProfileController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    public function memberProfileDetails(){
+        $code=$_POST['code'];
+        $memberProfile=MemberProfile::where('code',$code)
+            ->get();
+        return response()->json([
+            'memberProfile' => $memberProfile
+        ]);
+    }
+
     public function memberProfileList(){
         $society_code=$_POST['society_code'];
         $memberProfile=memberProfile::withTrashed()->get();
