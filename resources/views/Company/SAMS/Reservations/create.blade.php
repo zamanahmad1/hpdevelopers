@@ -62,8 +62,8 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Reservation Status</label>
-                                <select name="reservationstatus_code" id="reservationstatus" class="form-control">
-                                    <option value="" name="reservationstatus_code">Select Reservation Status</option>
+                                <select name="reservation_status" id="reservationstatus" class="form-control">
+                                    <option value="" name="reservation_status">Select Reservation Status</option>
                                     @foreach($reservationStatus as $rs)
                                         <option value="{{$rs->code}}">{{$rs->name}}</option>
                                     @endforeach

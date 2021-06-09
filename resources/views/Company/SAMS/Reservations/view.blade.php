@@ -115,7 +115,7 @@
                                                             <a href="javascript:void(0)"
                                                                onclick="$(this).parent().find('form').submit()"
                                                                class="btn btn-success">Restore</a>
-                                                            <form action="/reservation/restore/{{$r->id}}" method="post">
+                                                            <form action="/reservations/restore/{{$r->id}}" method="post">
                                                                 @method('PUT')
                                                                 <input type="hidden" name="_token"
                                                                        value="{{ csrf_token() }}">

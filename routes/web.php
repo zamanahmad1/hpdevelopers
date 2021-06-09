@@ -229,10 +229,12 @@ Route::put('reservationstatus/restore/{reservationStatus}',[\App\Http\Controller
 Route::get('reservations',[\App\Http\Controllers\SAMS\ReservationController::class,'index'])->middleware('permission:view reservations')->name('reservations.index');
 Route::get('reservations/create',[\App\Http\Controllers\SAMS\ReservationController::class,'create'])->middleware('permission:create reservations')->name('reservations.create');
 Route::post('reservations',[\App\Http\Controllers\SAMS\ReservationController::class,'store'])->middleware('permission:store reservations')->name('reservations.store');
-Route::get('reservations/{reservationStatus}/edit',[\App\Http\Controllers\SAMS\ReservationController::class,'edit'])->middleware('permission:edit reservations')->name('reservations.edit');
-Route::put('reservations/{reservationStatus}',[\App\Http\Controllers\SAMS\ReservationController::class,'update'])->middleware('permission:update reservations')->name('reservations.update');
-Route::delete('reservations/{reservationStatus}',[\App\Http\Controllers\SAMS\ReservationController::class ,'destroy'])->middleware('permission:delete reservations')->name('reservations.destroy');
-Route::put('reservations/restore/{reservationStatus}',[\App\Http\Controllers\SAMS\ReservationController::class,'restore'])->middleware('permission:restore reservations')->name('reservations.restore');
+Route::get('reservations/{reservation}/edit',[\App\Http\Controllers\SAMS\ReservationController::class,'edit'])->middleware('permission:edit reservations')->name('reservations.edit');
+Route::put('reservations/{reservation}',[\App\Http\Controllers\SAMS\ReservationController::class,'update'])->middleware('permission:update reservations')->name('reservations.update');
+Route::delete('reservations/{reservation}',[\App\Http\Controllers\SAMS\ReservationController::class ,'destroy'])->middleware('permission:delete reservations')->name('reservations.destroy');
+Route::put('reservations/restore/{reservation}',[\App\Http\Controllers\SAMS\ReservationController::class,'restore'])->middleware('permission:restore reservations')->name('reservations.restore');
+//for Installment Plan
+Route::get('installmentplans',[\App\Http\Controllers\SAMS\InstallmentPlans\InstallmentController::class,'index'])->middleware('permission:view installment plans')->name('installmentplans.index');
 //Dashboard
 Route::get('/Dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('Dashboard');
 

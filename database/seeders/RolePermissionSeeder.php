@@ -238,6 +238,14 @@ class RolePermissionSeeder extends Seeder
         Permission::create(['name' => 'update reservations']);
         Permission::create(['name' => 'delete reservations']);
         Permission::create(['name' => 'restore reservations']);
+        //Installment Plan
+        Permission::create(['name' => 'view installment plans']);
+        Permission::create(['name' => 'create installment plans']);
+        Permission::create(['name' => 'store installment plans']);
+        Permission::create(['name' => 'edit installment plans']);
+        Permission::create(['name' => 'update installment plans']);
+        Permission::create(['name' => 'delete installment plans']);
+        Permission::create(['name' => 'restore installment plans']);
 
 
         $user=UserAlias::find(1);

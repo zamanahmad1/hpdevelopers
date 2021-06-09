@@ -86,9 +86,19 @@ class ReservationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Reservation $reservation)
     {
-        //
+        $plotInventory=PlotInventory::where('code',$request->plot_code)
+            ->get();
+        $reservation->plot_code=$request->plot_code;
+        $reservation->memberprofile_code=$request->memberprofile_code;
+        $reservation->reserved_till=$request->reserved_till;
+        $reservation->reservation_status=$request->reservation_status;
+        $reservation->description=$request->description;
+        $reservation->save();
+        $plotInventory[0]->plotavailability_code='reserved';
+        $plotInventory[0]->save();
+        return redirect()->route('reservations.index');
     }
 
     /**
@@ -102,6 +112,13 @@ class ReservationController extends Controller
         //
     }
 
+    public function restore($id){
+        $reservation=Reservation::withTrashed()->where('id',$id)
+            ->first();
+        $reservation->restore();
+        return redirect()->route('reservations.index');
+
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -110,7 +127,16 @@ class ReservationController extends Controller
      */
     public function edit(Reservation $reservation)
     {
-        //
+        $plot=PlotInventory::where('code',$reservation->plot_code)
+            ->get();
+        $plot[0]->plotavailability_code='available';
+        $plot[0]->save();
+        $arr['plotInventory']=PlotInventory::where('plotavailability_code','available')
+            ->get();
+        $arr['memberProfile']=MemberProfile::all();
+        $arr['reservationStatus']=ReservationStatus::all();
+        $arr['reservation']=$reservation;
+        return view('Company.SAMS.Reservations.edit')->with($arr);
     }
 
     /**
@@ -122,7 +148,17 @@ class ReservationController extends Controller
      */
     public function update(Request $request, Reservation $reservation)
     {
-        //
+        $plotInventory=PlotInventory::where('code',$request->plot_code)
+            ->get();
+        $reservation->plot_code=$request->plot_code;
+        $reservation->memberprofile_code=$request->memberprofile_code;
+        $reservation->reserved_till=$request->reserved_till;
+        $reservation->reservation_status=$request->reservation_status;
+        $reservation->description=$request->description;
+        $reservation->save();
+        $plotInventory[0]->plotavailability_code='reserved';
+        $plotInventory[0]->save();
+        return redirect()->route('reservations.index');
     }
 
     /**
@@ -133,6 +169,8 @@ class ReservationController extends Controller
      */
     public function destroy(Reservation $reservation)
     {
-        //
+        $reservation->delete();
+        return redirect()->route('reservations.index');
+
     }
 }

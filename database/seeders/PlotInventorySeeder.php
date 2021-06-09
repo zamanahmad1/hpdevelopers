@@ -140,6 +140,7 @@ class PlotInventorySeeder extends Seeder
         $this->call(PlotDimensionSeeder::class);
         $this->call(MemberProfileSeeder::class);
         $this->call(ReservationSeeder::class);
+        $this->call(InstallmentPlanSeeder::class);
 
 
     }
