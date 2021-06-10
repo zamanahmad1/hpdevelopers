@@ -235,6 +235,13 @@ Route::delete('reservations/{reservation}',[\App\Http\Controllers\SAMS\Reservati
 Route::put('reservations/restore/{reservation}',[\App\Http\Controllers\SAMS\ReservationController::class,'restore'])->middleware('permission:restore reservations')->name('reservations.restore');
 //for Installment Plan
 Route::get('installmentplans',[\App\Http\Controllers\SAMS\InstallmentPlans\InstallmentController::class,'index'])->middleware('permission:view installment plans')->name('installmentplans.index');
+Route::get('installmentplans/create',[\App\Http\Controllers\SAMS\InstallmentPlans\InstallmentController::class,'create'])->middleware('permission:create installment plans')->name('installmentplans.create');
+Route::post('installmentplans',[\App\Http\Controllers\SAMS\InstallmentPlans\InstallmentController::class,'store'])->middleware('permission:store installment plans')->name('installmentplans.store');
+Route::get('installmentplans/{installmentPlan}/edit',[\App\Http\Controllers\SAMS\InstallmentPlans\InstallmentController::class,'edit'])->middleware('permission:edit installment plans')->name('installmentplans.edit');
+Route::put('installmentplans/{installmentPlan}',[\App\Http\Controllers\SAMS\InstallmentPlans\InstallmentController::class,'update'])->middleware('permission:update installment plans')->name('installmentplans.update');
+Route::delete('installmentplans/{installmentPlan}',[\App\Http\Controllers\SAMS\InstallmentPlans\InstallmentController::class,'delete'])->middleware('permission:delete installment plans')->name('installmentplans.destroy');
+Route::put('installmentplans/restore/{installmentPlan}',[\App\Http\Controllers\SAMS\InstallmentPlans\InstallmentController::class,'restore'])->middleware('permission:restore installment plans')->name('installmentplans.restore');
+
 //Dashboard
 Route::get('/Dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('Dashboard');
 

@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class InstallmentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +19,14 @@ class InstallmentController extends Controller
      */
     public function index()
     {
-        //
+        if (auth()->user()->hasRole('Administrator')){
+            $arr['installmentPlan']=InstallmentPlan::withTrashed()->get();
+            return view('Company.SAMS.InstallmentPlans.view')->with($arr);
+        }else {
+            $arr['installmentPlan'] = InstallmentPlan::all();
+            return view('Company.SAMS.InstallmentPlans.view')->with($arr);
+
+        }
     }
 
     /**
