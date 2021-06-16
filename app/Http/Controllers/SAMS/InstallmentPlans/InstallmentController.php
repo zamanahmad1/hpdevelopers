@@ -36,7 +36,7 @@ class InstallmentController extends Controller
      */
     public function create()
     {
-        //
+        return view('Company.SAMS.InstallmentPlans.create');
     }
 
     /**
@@ -45,9 +45,23 @@ class InstallmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, InstallmentPlan $installmentPlan)
     {
-        //
+        $installmentPlan->name=$request->name;
+        $installmentPlan->code=$request->code;
+        $installmentPlan->booking=$request->booking;
+        $installmentPlan->allocation=$request->allocation;
+        $installmentPlan->confirmation=$request->confirmation;
+        $installmentPlan->months=$request->months;
+        $installmentPlan->monthly_installment=$request->monthly_installment;
+        $installmentPlan->quarterly_installment=$request->quarterly_installment;
+        $installmentPlan->midyear_installment=$request->midyear_installment;
+        $installmentPlan->yearly_installment=$request->yearly_installment;
+        $installmentPlan->possession=$request->possession;
+        $installmentPlan->total=$request->total;
+        $installmentPlan->description=$request->description;
+        $installmentPlan->save();
+        return redirect()->route('installmentplans.index');
     }
 
     /**
@@ -61,6 +75,13 @@ class InstallmentController extends Controller
         //
     }
 
+    public function restore($id){
+        $installmentPlan=InstallmentPlan::withTrashed()->where('id',$id)
+            ->first();
+        $installmentPlan->restore();
+        return redirect()->route('installmentplans.index');
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -69,7 +90,8 @@ class InstallmentController extends Controller
      */
     public function edit(InstallmentPlan $installmentPlan)
     {
-        //
+        $arr['installmentPlan']=$installmentPlan;
+        return view('Company.SAMS.InstallmentPlans.edit')->with($arr);
     }
 
     /**
@@ -81,7 +103,22 @@ class InstallmentController extends Controller
      */
     public function update(Request $request, InstallmentPlan $installmentPlan)
     {
-        //
+        $installmentPlan->name=$request->name;
+        $installmentPlan->code=$request->code;
+        $installmentPlan->booking=$request->booking;
+        $installmentPlan->allocation=$request->allocation;
+        $installmentPlan->confirmation=$request->confirmation;
+        $installmentPlan->months=$request->months;
+        $installmentPlan->monthly_installment=$request->monthly_installment;
+        $installmentPlan->quarterly_installment=$request->quarterly_installment;
+        $installmentPlan->midyear_installment=$request->midyear_installment;
+        $installmentPlan->yearly_installment=$request->yearly_installment;
+        $installmentPlan->possession=$request->possession;
+        $installmentPlan->total=$request->total;
+        $installmentPlan->description=$request->description;
+        $installmentPlan->updated_at=date('Y-m-d H:i:s');
+        $installmentPlan->save();
+        return redirect()->route('installmentplans.index');
     }
 
     /**
@@ -92,6 +129,7 @@ class InstallmentController extends Controller
      */
     public function destroy(InstallmentPlan $installmentPlan)
     {
-        //
+        $installmentPlan->delete();
+        return redirect()->route('installmentplans.index');
     }
 }

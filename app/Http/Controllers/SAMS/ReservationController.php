@@ -155,6 +155,7 @@ class ReservationController extends Controller
         $reservation->reserved_till=$request->reserved_till;
         $reservation->reservation_status=$request->reservation_status;
         $reservation->description=$request->description;
+        $reservation->updated_at=date('Y-m-d H:i:s');
         $reservation->save();
         $plotInventory[0]->plotavailability_code='reserved';
         $plotInventory[0]->save();

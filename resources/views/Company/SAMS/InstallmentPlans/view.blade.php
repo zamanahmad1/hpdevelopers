@@ -53,6 +53,36 @@
                                                     aria-controls="installmentplan_table" rowspan="1" colspan="1">Installment Plan Code
                                                 </th>
                                                 <th class="sorting  text-bold bg-primary" tabindex="0"
+                                                    aria-controls="installmentplan_table" rowspan="1" colspan="1">Booking
+                                                </th>
+                                                <th class="sorting  text-bold bg-primary" tabindex="0"
+                                                    aria-controls="installmentplan_table" rowspan="1" colspan="1">Allocation
+                                                </th>
+                                                <th class="sorting  text-bold bg-primary" tabindex="0"
+                                                    aria-controls="installmentplan_table" rowspan="1" colspan="1">Confirmation
+                                                </th>
+                                                <th class="sorting  text-bold bg-primary" tabindex="0"
+                                                    aria-controls="installmentplan_table" rowspan="1" colspan="1">No of Months
+                                                </th>
+                                                <th class="sorting  text-bold bg-primary" tabindex="0"
+                                                    aria-controls="installmentplan_table" rowspan="1" colspan="1">Monthly Installment
+                                                </th>
+                                                <th class="sorting  text-bold bg-primary" tabindex="0"
+                                                    aria-controls="installmentplan_table" rowspan="1" colspan="1">Quarterly Installment
+                                                </th>
+                                                <th class="sorting  text-bold bg-primary" tabindex="0"
+                                                    aria-controls="installmentplan_table" rowspan="1" colspan="1">Mid Year Installments
+                                                </th>
+                                                <th class="sorting  text-bold bg-primary" tabindex="0"
+                                                    aria-controls="installmentplan_table" rowspan="1" colspan="1">Yearly Installment
+                                                </th>
+                                                <th class="sorting  text-bold bg-primary" tabindex="0"
+                                                    aria-controls="installmentplan_table" rowspan="1" colspan="1">Possession
+                                                </th>
+                                                <th class="sorting  text-bold bg-primary" tabindex="0"
+                                                    aria-controls="installmentplan_table" rowspan="1" colspan="1">Total
+                                                </th>
+                                                <th class="sorting  text-bold bg-primary" tabindex="0"
                                                     aria-controls="installmentplan_table" rowspan="1" colspan="1">Installment Plan
                                                     Description
                                                 </th>
@@ -75,6 +105,16 @@
                                                     <td class="dtr-control sorting_1" tabindex="0">{{$is->id}}</td>
                                                     <td>{{$is->name}}</td>
                                                     <td>{{$is->code}}</td>
+                                                    <td>{{$is->booking}} %</td>
+                                                    <td>{{$is->allocation}} %</td>
+                                                    <td>{{$is->confirmation}} %</td>
+                                                    <td>{{$is->months}} %</td>
+                                                    <td>{{$is->monthly_installment}} %</td>
+                                                    <td>{{$is->quarterly_installment}} %</td>
+                                                    <td>{{$is->midyear_installment}} %</td>
+                                                    <td>{{$is->yearly_installment}} %</td>
+                                                    <td>{{$is->possession}} %</td>
+                                                    <td>{{$is->total}} %</td>
                                                     <td>{{$is->description}}</td>
                                                     <td>{{$is->created_at}}</td>
                                                     <td>{{$is->updated_at}}</td>
