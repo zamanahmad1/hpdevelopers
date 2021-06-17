@@ -241,6 +241,7 @@ Route::get('installmentplans/{installmentPlan}/edit',[\App\Http\Controllers\SAMS
 Route::put('installmentplans/{installmentPlan}',[\App\Http\Controllers\SAMS\InstallmentPlans\InstallmentController::class,'update'])->middleware('permission:update installment plans')->name('installmentplans.update');
 Route::delete('installmentplans/{installmentPlan}',[\App\Http\Controllers\SAMS\InstallmentPlans\InstallmentController::class,'destroy'])->middleware('permission:delete installment plans')->name('installmentplans.destroy');
 Route::put('installmentplans/restore/{installmentPlan}',[\App\Http\Controllers\SAMS\InstallmentPlans\InstallmentController::class,'restore'])->middleware('permission:restore installment plans')->name('installmentplans.restore');
+//Dealer Rebate
 
 //Dashboard
 Route::get('/Dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('Dashboard');
