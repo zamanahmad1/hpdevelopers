@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDealerRebatesTable extends Migration
+class CreatePlotSaleStatusesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateDealerRebatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('dealer_rebates', function (Blueprint $table) {
+        Schema::create('plot_sale_statuses', function (Blueprint $table) {
             $table->id();
-            $table->string('plotsale_code')->unique();
-            $table->string('membership_code');
-            $table->double('amount');
-            $table->string('status');
+            $table->string('name');
+            $table->string('code')->unique();
+            $table->longText('description');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -31,6 +30,6 @@ class CreateDealerRebatesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dealer_rebates');
+        Schema::dropIfExists('plot_sale_statuses');
     }
 }

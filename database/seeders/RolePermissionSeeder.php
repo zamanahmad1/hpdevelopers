@@ -246,6 +246,8 @@ class RolePermissionSeeder extends Seeder
         Permission::create(['name' => 'update installment plans']);
         Permission::create(['name' => 'delete installment plans']);
         Permission::create(['name' => 'restore installment plans']);
+        //Dealer Rebates
+        Permission::create(['name' => 'view dealer rebates']);
 
 
         $user=UserAlias::find(1);

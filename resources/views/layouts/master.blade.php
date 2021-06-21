@@ -293,6 +293,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </a>
                             </li>
                         </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('installmentplans.index')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Installment Plans</p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
 
                     <li class="nav-item">
@@ -361,14 +369,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </a>
                             </li>
                         </ul>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{{route('installmentplans.index')}}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Installment Plans</p>
-                                </a>
-                            </li>
-                        </ul>
                     </li>
 
                     <li class="nav-item">
@@ -384,6 +384,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <a href="{{route('dealerships.index')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Dealership</p>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('dealerrebates.index')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Dealer Rebates</p>
                                 </a>
                             </li>
                         </ul>
