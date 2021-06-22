@@ -126,4 +126,13 @@ class SocietyController extends Controller
         $society->delete();
         return redirect()->route('societies.index');
     }
+
+    public function societyList(){
+        $project_code=$_POST['project_code'];
+        $societylist=Society::where('project_code',$project_code)
+            ->get();
+        return response()->json([
+            'societies' => $societylist
+        ]);
+    }
 }

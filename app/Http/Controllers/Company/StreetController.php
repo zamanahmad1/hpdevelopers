@@ -127,4 +127,13 @@ class StreetController extends Controller
         $street->delete();
         return redirect()->route('streets.index');
     }
+
+    public function streetList(){
+        $block_code=$_POST['block_code'];
+        $streetlist=Street::where('block_code',$block_code)
+            ->get();
+        return response()->json([
+            'streets' => $streetlist
+        ]);
+    }
 }

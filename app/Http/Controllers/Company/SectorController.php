@@ -129,4 +129,13 @@ class SectorController extends Controller
         $sector->delete();
         return redirect()->route('sectors.index');
     }
+
+    public function sectorList(){
+        $society_code=$_POST['society_code'];
+        $sectorlist=Sector::where('society_code',$society_code)
+            ->get();
+        return response()->json([
+            'sectors' => $sectorlist
+        ]);
+    }
 }

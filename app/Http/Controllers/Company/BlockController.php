@@ -129,4 +129,13 @@ class BlockController extends Controller
         $block->delete();
         return redirect()->route('blocks.index');
     }
+
+    public function blockList(){
+        $sector_code=$_POST['sector_code'];
+        $blocklist=Block::where('sector_code',$sector_code)
+            ->get();
+        return response()->json([
+            'blocks' => $blocklist
+        ]);
+    }
 }

@@ -258,4 +258,15 @@ class PlotInventoryController extends Controller
         return redirect()->route('plotinventories.index');
 
     }
+
+    public function plotList(){
+        $street_code=$_POST['street_code'];
+        $plotlist=PlotInventory::where('street_code',$street_code)
+            ->where('plotavailability_code','available')
+            ->get();
+
+        return response()->json([
+            'plots' => $plotlist
+        ]);
+    }
 }

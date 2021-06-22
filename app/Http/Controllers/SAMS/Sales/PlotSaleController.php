@@ -4,6 +4,7 @@ namespace App\Http\Controllers\SAMS\Sales;
 
 use App\Http\Controllers\Controller;
 use App\Models\PlotSale;
+use App\Models\Project;
 use Illuminate\Http\Request;
 
 class PlotSaleController extends Controller
@@ -25,7 +26,8 @@ class PlotSaleController extends Controller
      */
     public function create()
     {
-        return view('');
+        $arr['project']=Project::all();
+        return view('Company.SAMS.Sales.create')->with($arr);
     }
 
     /**

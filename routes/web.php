@@ -65,6 +65,7 @@ Route::get('societies/{society}/edit',[\App\Http\Controllers\Company\SocietyCont
 Route::put('societies/{society}',[\App\Http\Controllers\Company\SocietyController::class,'update'])->middleware('permission:update societies')->name('societies.update');
 Route::delete('societies/{society}',[\App\Http\Controllers\Company\SocietyController::class ,'destroy'])->middleware('permission:delete societies')->name('societies.destroy');
 Route::put('societies/restore/{society}',[\App\Http\Controllers\Company\SocietyController::class,'restore'])->middleware('permission:restore societies')->name('societies.restore');
+Route::post('societylist',[\App\Http\Controllers\Company\SocietyController::class,'societyList'])->name('societies.list');
 //for Sectors
 Route::get('sectors',[\App\Http\Controllers\Company\SectorController::class,'index'])->middleware('permission:view sectors')->name('sectors.index');
 Route::get('sectors/create',[\App\Http\Controllers\Company\SectorController::class,'create'])->middleware('permission:create sectors')->name('sectors.create');
@@ -73,6 +74,7 @@ Route::get('sectors/{sector}/edit',[\App\Http\Controllers\Company\SectorControll
 Route::put('sectors/{sector}',[\App\Http\Controllers\Company\SectorController::class,'update'])->middleware('permission:update sectors')->name('sectors.update');
 Route::delete('sectors/{sector}',[\App\Http\Controllers\Company\SectorController::class ,'destroy'])->middleware('permission:delete sectors')->name('sectors.destroy');
 Route::put('sectors/restore/{sector}',[\App\Http\Controllers\Company\SectorController::class,'restore'])->middleware('permission:restore sectors')->name('sectors.restore');
+Route::post('sectorlist',[\App\Http\Controllers\Company\SectorController::class,'sectorList'])->name('sectors.list');
 //for Blocks
 Route::get('blocks',[\App\Http\Controllers\Company\BlockController::class,'index'])->middleware('permission:view blocks')->name('blocks.index');
 Route::get('blocks/create',[\App\Http\Controllers\Company\BlockController::class,'create'])->middleware('permission:create blocks')->name('blocks.create');
@@ -81,6 +83,7 @@ Route::get('blocks/{block}/edit',[\App\Http\Controllers\Company\BlockController:
 Route::put('blocks/{block}',[\App\Http\Controllers\Company\BlockController::class,'update'])->middleware('permission:update blocks')->name('blocks.update');
 Route::delete('blocks/{block}',[\App\Http\Controllers\Company\BlockController::class ,'destroy'])->middleware('permission:delete blocks')->name('blocks.destroy');
 Route::put('blocks/restore/{block}',[\App\Http\Controllers\Company\BlockController::class,'restore'])->middleware('permission:restore blocks')->name('blocks.restore');
+Route::post('blocklist',[\App\Http\Controllers\Company\BlockController::class,'blockList'])->name('blocks.list');
 //for Streets
 Route::get('streets',[\App\Http\Controllers\Company\StreetController::class,'index'])->middleware('permission:view streets')->name('streets.index');
 Route::get('streets/create',[\App\Http\Controllers\Company\StreetController::class,'create'])->middleware('permission:create streets')->name('streets.create');
@@ -89,6 +92,7 @@ Route::get('streets/{street}/edit',[\App\Http\Controllers\Company\StreetControll
 Route::put('streets/{street}',[\App\Http\Controllers\Company\StreetController::class,'update'])->middleware('permission:update streets')->name('streets.update');
 Route::delete('streets/{street}',[\App\Http\Controllers\Company\StreetController::class ,'destroy'])->middleware('permission:delete streets')->name('streets.destroy');
 Route::put('streets/restore/{street}',[\App\Http\Controllers\Company\StreetController::class,'restore'])->middleware('permission:restore streets')->name('streets.restore');
+Route::post('streetlist',[\App\Http\Controllers\Company\StreetController::class,'streetList'])->name('streets.list');
 //for Plot Type
 Route::get('plottypes',[\App\Http\Controllers\Plots\PlotTypeController::class,'index'])->middleware('permission:view plot types')->name('plottypes.index');
 Route::get('plottypes/create',[\App\Http\Controllers\Plots\PlotTypeController::class,'create'])->middleware('permission:create plot types')->name('plottypes.create');
@@ -154,6 +158,7 @@ Route::put('plotinventories/{plotInventory}',[\App\Http\Controllers\Plots\PlotIn
 Route::delete('plotinventories/{plotInventory}',[\App\Http\Controllers\Plots\PlotInventoryController::class ,'destroy'])->middleware('permission:delete plot inventories')->name('plotinventories.destroy');
 Route::put('plotinventories/restore/{plotInventory}',[\App\Http\Controllers\Plots\PlotInventoryController::class,'restore'])->middleware('permission:restore plot inventories')->name('plotinventories.restore');
 Route::get('plotinventories/{plotInventory}/details',[\App\Http\Controllers\plots\PlotInventoryController::class,'show'])->middleware('permission:show plot inventories')->name('plotinventories.show');
+Route::post('plotinventorieslist',[\App\Http\Controllers\Plots\PlotInventoryController::class,'plotList'])->name('plotinventories.list');
 //for Plot Price
 Route::get('plotprices',[\App\Http\Controllers\Plots\PlotPriceController::class,'index'])->middleware('permission:view plot prices')->name('plotprices.index');
 Route::get('plotprices/update',[\App\Http\Controllers\Plots\PlotPriceController::class,'update'])->middleware('permission:update plot prices')->name('plotprices.update');
@@ -243,6 +248,8 @@ Route::delete('installmentplans/{installmentPlan}',[\App\Http\Controllers\SAMS\I
 Route::put('installmentplans/restore/{installmentPlan}',[\App\Http\Controllers\SAMS\InstallmentPlans\InstallmentController::class,'restore'])->middleware('permission:restore installment plans')->name('installmentplans.restore');
 //Dealer Rebate
 Route::get('dealerrebates',[\App\Http\Controllers\SAMS\DealerRebate\DealerRebateController::class,'index'])->middleware('permission:view dealer rebates')->name('dealerrebates.index');
+//Plot Sales
+Route::get('plotsales/create',[\App\Http\Controllers\SAMS\Sales\PlotSaleController::class,'create'])->middleware('permission:create plot sales')->name('plotsales.create');
 //Dashboard
 Route::get('/Dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('Dashboard');
 
