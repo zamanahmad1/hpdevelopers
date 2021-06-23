@@ -306,6 +306,7 @@
                 var increment=0;
                 var payment_check;
                 var customer_id;
+                var plot_change_check=0;
                 var plot_id;
                 //selector
                 var _project=$('#project');
@@ -443,6 +444,7 @@
                 })
 
                 _plot.change(function (){
+                    plot_change_check=1;
                     plot_id=this.value;
                     $.ajax({
                         url:"{{route('plotdetail.list')}}",
@@ -459,6 +461,7 @@
                             category=data.category;
                             size=data.size;
                             type=data.type;
+                            iffun();
                         },
                         error: function (data, textStatus, errorThrown) {
                             console.log(data);
@@ -475,12 +478,17 @@
                         "Plot Category:</h5></td><td>" + category + "</td></tr>");
                     _inhensive.append("<tr><td><h5>Plot Size:</h5></td><td>" + size + "</td><td><h5>" +
                         "Plot Type:</h5></td><td>" + type + "</td></tr>");
-                    if(inhensivefeature !== undefined && inhensivefeature.length != 0){
+                    if( jQuery.isEmptyObject(inhensivefeature)!=1){
                         _inhensive.append("<tr><th colspan='4'><h3>Inhensive Features:</h3></th></tr>");
                         inhensivefeature.forEach(function (inhensiveFeature) {
                             var temp = (selected_price / 100) * inhensiveFeature[0].percentage;
                             increment += temp;
-                            _inhensive.append("<tr><td colspan='2'><h5>" + inhensiveFeature[0].name + ":</h5></td><td colspan='2'>" + temp + "</td></tr>");
+                            if (plot_change_check==1){
+                                _inhensive.append("<tr><td colspan='2'><h5>" + inhensiveFeature[0].name + ":</h5></td><td colspan='2'>" + inhensiveFeature[0].percentage + "%</td></tr>");
+                                plot_change_check=0;
+                            }else{
+                                _inhensive.append("<tr><td colspan='2'><h5>" + inhensiveFeature[0].name + ":</h5></td><td colspan='2'>" + temp + "%</td></tr>");
+                            }
                         })
                     }
 
