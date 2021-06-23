@@ -159,6 +159,7 @@ Route::delete('plotinventories/{plotInventory}',[\App\Http\Controllers\Plots\Plo
 Route::put('plotinventories/restore/{plotInventory}',[\App\Http\Controllers\Plots\PlotInventoryController::class,'restore'])->middleware('permission:restore plot inventories')->name('plotinventories.restore');
 Route::get('plotinventories/{plotInventory}/details',[\App\Http\Controllers\plots\PlotInventoryController::class,'show'])->middleware('permission:show plot inventories')->name('plotinventories.show');
 Route::post('plotinventorieslist',[\App\Http\Controllers\Plots\PlotInventoryController::class,'plotList'])->name('plotinventories.list');
+Route::post('plotdetaillist',[\App\Http\Controllers\plots\PlotInventoryController::class,'plotDetailList'])->name('plotdetail.list');
 //for Plot Price
 Route::get('plotprices',[\App\Http\Controllers\Plots\PlotPriceController::class,'index'])->middleware('permission:view plot prices')->name('plotprices.index');
 Route::get('plotprices/update',[\App\Http\Controllers\Plots\PlotPriceController::class,'update'])->middleware('permission:update plot prices')->name('plotprices.update');

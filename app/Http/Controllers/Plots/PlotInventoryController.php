@@ -269,4 +269,43 @@ class PlotInventoryController extends Controller
             'plots' => $plotlist
         ]);
     }
+
+    public function plotDetailList(){
+        $plot_code=$_POST['plot_code'];
+        $plotInventory=PlotInventory::where('code', $plot_code)
+            ->get();
+
+
+        $parent_id=$plotInventory[0]->plotsize_code;
+        $plotSize=PlotSize::where('code',$parent_id)
+            ->get();
+
+        $parent_id=$plotInventory[0]->plotcategory_code;
+        $plotCategory=PlotCategory::where('code',$parent_id)
+            ->get();
+
+        $plotPrice = PlotPrice::where('plot_code',$plot_code)
+            ->get();
+
+        $parent_id=$plotInventory[0]->plottype_code;
+        $plotType=plotType::where('code',$parent_id)
+            ->get();
+
+        $parent_id=$plotInventory[0]->inhensivefeature_code;
+        $temp=explode(',',$parent_id);
+        for($x=0;$x<count($temp);$x++) {
+            $inhensiveFeature[$x]=PlotInhensiveFeature::where('code',$temp[$x])
+                ->get();
+        }
+
+        return response()->json([
+            'cash_price' => $plotPrice[0]->cash_price,
+            'installment_price' => $plotPrice[0]->installment_price,
+            'area' => $plotInventory[0]->area,
+            'category' => $plotCategory[0]->name,
+            'size' => $plotSize[0]->name,
+            'type' => $plotType[0]->name,
+            'inhensivefeature' => $inhensiveFeature
+        ]);
+    }
 }

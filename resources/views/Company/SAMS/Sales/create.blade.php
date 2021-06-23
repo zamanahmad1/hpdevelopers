@@ -237,10 +237,8 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <div class="form-check">
                                     <label>Total Price</label>
                                     <input type="number" name="total_price" class="form-control" step="0.01">
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -248,9 +246,13 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <label>Payment</label>
-                            <div class="form-group">
-                                <input type="radio" name="payment"  value="cash_price" class="form-check-input">
+                            <div class="form-group ml-4">
+                                <input type="radio" name="payment"  value="cash_price" class="form-check-input" >
                                 <label for="payment" class="form-check-label">Cash Price</label>
+                            </div>
+                            <div class="form-group ml-4">
+                                <input type="radio" name="payment"  value="installment_price" class="form-check-input" >
+                                <label for="payment" class="form-check-label">Installment Price</label>
                             </div>
                         </div>
                     </div>
@@ -260,6 +262,16 @@
                             <div class="form-group">
                                 <label>Description</label>
                                 <textarea class="form-control" name="description" id="description" rows="5"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" >
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <table class="table table-bordered " id="inhensive">
+
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -429,6 +441,88 @@
                         },
                     })
                 })
+
+                _plot.change(function (){
+                    plot_id=this.value;
+                    $.ajax({
+                        url:"{{route('plotdetail.list')}}",
+                        type:"POST",
+                        data:{
+                            plot_code:this.value,
+                            _token: '{{csrf_token()}}'
+                        },
+                        success:function(data){
+                            cash_price=data.cash_price;
+                            installment_price=data.installment_price;
+                            inhensivefeature=data.inhensivefeature;
+                            area=data.area;
+                            category=data.category;
+                            size=data.size;
+                            type=data.type;
+                        },
+                        error: function (data, textStatus, errorThrown) {
+                            console.log(data);
+                        },
+                    })
+                })
+
+
+                function iffun() {
+                    increment=0;
+                    _inhensive.show();
+                    _inhensive.empty();
+                    _inhensive.append("<tr><td><h5>Plot Area:</h5></td><td>" + area + "</td><td><h5>" +
+                        "Plot Category:</h5></td><td>" + category + "</td></tr>");
+                    _inhensive.append("<tr><td><h5>Plot Size:</h5></td><td>" + size + "</td><td><h5>" +
+                        "Plot Type:</h5></td><td>" + type + "</td></tr>");
+                    if(inhensivefeature !== undefined && inhensivefeature.length != 0){
+                        _inhensive.append("<tr><th colspan='4'><h3>Inhensive Features:</h3></th></tr>");
+                        inhensivefeature.forEach(function (inhensiveFeature) {
+                            var temp = (selected_price / 100) * inhensiveFeature[0].percentage;
+                            increment += temp;
+                            _inhensive.append("<tr><td colspan='2'><h5>" + inhensiveFeature[0].name + ":</h5></td><td colspan='2'>" + temp + "</td></tr>");
+                        })
+                    }
+
+                }
+
+                _payment.change( function (){
+                    if(this.value=='cash_price'){
+                        payment_check=this.value;
+                        discount=Number(_discount.val());
+                        extra_charges=Number(_extra_charges.val());
+                        selected_price=cash_price;
+                        iffun();
+                        total_price=0;
+                        var total_price=cash_price-discount;
+                        total_price+=extra_charges+increment;
+                        _total_price.val(total_price);
+                    }
+                    if(this.value=='installment_price'){
+                        payment_check=this.value;
+                        discount=Number(_discount.val());
+                        extra_charges=Number(_extra_charges.val());
+                        selected_price=installment_price;
+                        iffun();
+                        var total_price=installment_price-discount;
+                        total_price+=extra_charges+increment;
+                        _total_price.val(total_price);
+                    }
+
+                })
+
+                _discount.change(function (){
+                    discount=Number(_discount.val());
+                    extra_charges=Number(_extra_charges.val());
+                    _total_price.val(selected_price-discount+extra_charges+increment);
+                })
+                _extra_charges.change(function(){
+                    discount=Number(_discount.val());
+                    extra_charges=Number(_extra_charges.val());
+                    _total_price.val(selected_price-discount+extra_charges+increment);
+                })
+
+
 
 
                 $('#save').click(function (event){
