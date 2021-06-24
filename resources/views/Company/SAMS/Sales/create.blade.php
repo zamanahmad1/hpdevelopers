@@ -150,130 +150,136 @@
             <div class="card-body">
                 <form method="POST" action="{{ route('projects.store') }}">
                     @csrf
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Project</label>
-                                <select name="project_code" id="project" class="form-control">
-                                    <option value="" name="project_code">Select Project</option>
-                                    @foreach($project as $p)
-                                        <option value="{{$p->code}}">{{$p->name}}</option>
-                                    @endforeach
-                                </select>
+                    <div id="step-1">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Project</label>
+                                    <select name="project_code" id="project" class="form-control">
+                                        <option value="" name="project_code">Select Project</option>
+                                        @foreach($project as $p)
+                                            <option value="{{$p->code}}">{{$p->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Society</label>
+                                    <select name="society_code" id="society" class="form-control">
+                                        <option value="" name="society_code">Select Project First</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Society</label>
-                                <select name="society_code" id="society" class="form-control">
-                                    <option value="" name="society_code">Select Project First</option>
-                                </select>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Sector</label>
+                                    <select name="sector_code" id="sector" class="form-control">
+                                        <option value="" name="sector_code">Select Society First</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Sector</label>
-                                <select name="sector_code" id="sector" class="form-control">
-                                    <option value="" name="sector_code">Select Society First</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Block</label>
-                                <select name="block_code" id="block" class="form-control">
-                                    <option value="" name="block_code">Select Sector First</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Street</label>
-                                <select name="street_code" id="street" class="form-control">
-                                    <option value="" name="street_code">Select Block First</option>
-                                </select>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Block</label>
+                                    <select name="block_code" id="block" class="form-control">
+                                        <option value="" name="block_code">Select Sector First</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Plot</label>
-                                <select name="plot_code" id="plot" class="form-control">
-                                    <option value="" name="plot_code">Select Street First</option>
-                                </select>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Street</label>
+                                    <select name="street_code" id="street" class="form-control">
+                                        <option value="" name="street_code">Select Block First</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Sale Code</label>
-                                <input type="text" name="code" class="form-control">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Plot</label>
+                                    <select name="plot_code" id="plot" class="form-control">
+                                        <option value="" name="plot_code">Select Street First</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Discount</label>
-                                <input type="number" name="discount" class="form-control" step="0.01">
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Extra Charges</label>
-                                <input type="number" name="extra_charges" class="form-control" step="0.01">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Sale Code</label>
+                                    <input type="text" name="code" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Discount</label>
+                                    <input type="number" name="discount" class="form-control" step="0.01">
+                                </div>
                             </div>
                         </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Extra Charges</label>
+                                    <input type="number" name="extra_charges" class="form-control" step="0.01">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
                                     <label>Total Price</label>
                                     <input type="number" name="total_price" class="form-control" step="0.01">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label>Payment</label>
+                                <div class="form-group ml-4">
+                                    <input type="radio" name="payment"  value="cash_price" class="form-check-input" >
+                                    <label for="payment" class="form-check-label">Cash Price</label>
+                                </div>
+                                <div class="form-group ml-4">
+                                    <input type="radio" name="payment"  value="installment_price" class="form-check-input" >
+                                    <label for="payment" class="form-check-label">Installment Price</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <textarea class="form-control" name="description" id="description" rows="5"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" >
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <table class="table table-bordered " id="inhensive">
+
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <label>Payment</label>
-                            <div class="form-group ml-4">
-                                <input type="radio" name="payment"  value="cash_price" class="form-check-input" >
-                                <label for="payment" class="form-check-label">Cash Price</label>
-                            </div>
-                            <div class="form-group ml-4">
-                                <input type="radio" name="payment"  value="installment_price" class="form-check-input" >
-                                <label for="payment" class="form-check-label">Installment Price</label>
-                            </div>
-                        </div>
-                    </div>
+                    <div id="step-2">
 
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label>Description</label>
-                                <textarea class="form-control" name="description" id="description" rows="5"></textarea>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row" >
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <table class="table table-bordered " id="inhensive">
-
-                                </table>
-                            </div>
-                        </div>
                     </div>
 
                     <div class="row">
@@ -307,6 +313,7 @@
                 var payment_check;
                 var customer_id;
                 var plot_change_check=0;
+                var inhensivefeature_check='';
                 var plot_id;
                 //selector
                 var _project=$('#project');
@@ -461,14 +468,20 @@
                             category=data.category;
                             size=data.size;
                             type=data.type;
+                            inhensivefeature_check=data.check;
                             iffun();
+                            if(payment_check=='cash_price'){
+                                cashPrice();
+                            }
+                            if(payment_check=='installment_price'){
+                                installmentPrice();
+                            }
                         },
                         error: function (data, textStatus, errorThrown) {
                             console.log(data);
                         },
                     })
                 })
-
 
                 function iffun() {
                     increment=0;
@@ -478,7 +491,7 @@
                         "Plot Category:</h5></td><td>" + category + "</td></tr>");
                     _inhensive.append("<tr><td><h5>Plot Size:</h5></td><td>" + size + "</td><td><h5>" +
                         "Plot Type:</h5></td><td>" + type + "</td></tr>");
-                    if( jQuery.isEmptyObject(inhensivefeature)!=1){
+                    if( inhensivefeature_check != ''){
                         _inhensive.append("<tr><th colspan='4'><h3>Inhensive Features:</h3></th></tr>");
                         inhensivefeature.forEach(function (inhensiveFeature) {
                             var temp = (selected_price / 100) * inhensiveFeature[0].percentage;
@@ -487,36 +500,43 @@
                                 _inhensive.append("<tr><td colspan='2'><h5>" + inhensiveFeature[0].name + ":</h5></td><td colspan='2'>" + inhensiveFeature[0].percentage + "%</td></tr>");
                                 plot_change_check=0;
                             }else{
-                                _inhensive.append("<tr><td colspan='2'><h5>" + inhensiveFeature[0].name + ":</h5></td><td colspan='2'>" + temp + "%</td></tr>");
+                                _inhensive.append("<tr><td colspan='2'><h5>" + inhensiveFeature[0].name + ":</h5></td><td colspan='2'>" + temp + "</td></tr>");
                             }
                         })
                     }
 
                 }
 
+                function cashPrice(){
+                    discount=Number(_discount.val());
+                    extra_charges=Number(_extra_charges.val());
+                    selected_price=cash_price;
+                    iffun();
+                    total_price=0;
+                    var total_price=cash_price-discount;
+                    total_price+=extra_charges+increment;
+                    _total_price.val(total_price);
+                }
+
+                function installmentPrice(){
+                    discount=Number(_discount.val());
+                    extra_charges=Number(_extra_charges.val());
+                    selected_price=installment_price;
+                    iffun();
+                    var total_price=installment_price-discount;
+                    total_price+=extra_charges+increment;
+                    _total_price.val(total_price);
+                }
+
                 _payment.change( function (){
                     if(this.value=='cash_price'){
                         payment_check=this.value;
-                        discount=Number(_discount.val());
-                        extra_charges=Number(_extra_charges.val());
-                        selected_price=cash_price;
-                        iffun();
-                        total_price=0;
-                        var total_price=cash_price-discount;
-                        total_price+=extra_charges+increment;
-                        _total_price.val(total_price);
+                        cashPrice();
                     }
                     if(this.value=='installment_price'){
                         payment_check=this.value;
-                        discount=Number(_discount.val());
-                        extra_charges=Number(_extra_charges.val());
-                        selected_price=installment_price;
-                        iffun();
-                        var total_price=installment_price-discount;
-                        total_price+=extra_charges+increment;
-                        _total_price.val(total_price);
+                        installmentPrice();
                     }
-
                 })
 
                 _discount.change(function (){
@@ -530,8 +550,30 @@
                     _total_price.val(selected_price-discount+extra_charges+increment);
                 })
 
+                _step1.click(function (e){
+                    e.preventDefault();
+                    $('#step1').toggle();
+                    $('#step2').toggle();
+                    $('#s2').toggleClass('active');
+                    $.ajax({
+                        url:"{{route('memberlist')}}",
+                        type:"POST",
+                        data:{
+                            _token: '{{csrf_token()}}'
+                        },
+                        success:function(data){
+                            _memberprofile.empty();
+                            _memberprofile.append('<option name="memberprofile_code" value="">choose member</option>');
+                            data.memberprofile.forEach(function (member){
+                                _memberprofile.append('<option value="'+member.code+'">'+member.name+'</option>');
+                            })
+                        },
+                        error: function (data, textStatus, errorThrown) {
+                            console.log(data);
+                        },
+                    })
 
-
+                })
 
                 $('#save').click(function (event){
                     if ($('#name').val()=='' ){

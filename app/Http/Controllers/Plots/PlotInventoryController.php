@@ -305,7 +305,8 @@ class PlotInventoryController extends Controller
             'category' => $plotCategory[0]->name,
             'size' => $plotSize[0]->name,
             'type' => $plotType[0]->name,
-            'inhensivefeature' => $inhensiveFeature
+            'inhensivefeature' => $inhensiveFeature,
+            'check' => $plotInventory[0]->inhensivefeature_code
         ]);
     }
 }
