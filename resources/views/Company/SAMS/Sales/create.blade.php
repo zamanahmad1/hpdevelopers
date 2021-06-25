@@ -150,7 +150,7 @@
             <div class="card-body">
                 <form method="POST" action="{{ route('projects.store') }}">
                     @csrf
-                    <div id="step-1">
+                    <div id="step1">
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
@@ -218,7 +218,7 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Sale Code</label>
-                                    <input type="text" name="code" class="form-control">
+                                    <input type="text" name="code" class="form-control" id="sale_code">
                                 </div>
                             </div>
                             <div class="col-sm-6">
@@ -248,6 +248,9 @@
                             <div class="col-sm-6">
                                 <label>Payment</label>
                                 <div class="form-group ml-4">
+                                    <input type="radio" name="payment"  value="default" class="form-check-input" hidden="">
+                                </div>
+                                <div class="form-group ml-4">
                                     <input type="radio" name="payment"  value="cash_price" class="form-check-input" >
                                     <label for="payment" class="form-check-label">Cash Price</label>
                                 </div>
@@ -276,15 +279,18 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <input type="submit" class="btn btn-info text-white bg-success" value="Next" name="step1">
+                            </div>
+                        </div>
                     </div>
 
-                    <div id="step-2">
-
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <input type="submit" class="btn btn-info text-white bg-success" value="Save" id="save">
+                    <div id="step2">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <input type="submit" class="btn btn-info text-white bg-success" value="Previous" name="step1">
+                            </div>
                         </div>
                     </div>
                 </form>
@@ -314,6 +320,7 @@
                 var customer_id;
                 var plot_change_check=0;
                 var inhensivefeature_check='';
+                var society_code;
                 var plot_id;
                 //selector
                 var _project=$('#project');
@@ -322,7 +329,9 @@
                 var _block=$('#block');
                 var _street=$('#street');
                 var _plot=$('#plot');
+                var _sale_code=$('#sale_code')
                 var _inhensive=$('#inhensive');
+                var _description=$('#description');
                 var _memberprofile=$('#memberprofile');
                 var _memberdetail=$('#memberdetail');
                 var _installmentplan=$('#installmentplan');
@@ -354,6 +363,7 @@
                             _token: '{{csrf_token()}}'
                         },
                         success: function (data) {
+                            society_code=this.value;
                             _society.empty();
                             _society.append('<option value="">choose society</option>');
                             data.societies.forEach(function (society){
@@ -550,28 +560,58 @@
                     _total_price.val(selected_price-discount+extra_charges+increment);
                 })
 
-                _step1.click(function (e){
+                _step1.click(function (e) {
+                    alert(_payment.val())
                     e.preventDefault();
-                    $('#step1').toggle();
-                    $('#step2').toggle();
-                    $('#s2').toggleClass('active');
-                    $.ajax({
-                        url:"{{route('memberlist')}}",
-                        type:"POST",
-                        data:{
-                            _token: '{{csrf_token()}}'
-                        },
-                        success:function(data){
-                            _memberprofile.empty();
-                            _memberprofile.append('<option name="memberprofile_code" value="">choose member</option>');
-                            data.memberprofile.forEach(function (member){
-                                _memberprofile.append('<option value="'+member.code+'">'+member.name+'</option>');
-                            })
-                        },
-                        error: function (data, textStatus, errorThrown) {
-                            console.log(data);
-                        },
-                    })
+                    if (!(_project.val())){
+                        alert("Select Project First");
+                    }else if (!(_society.val())) {
+                        alert("Select Society First");
+                    }else if (!(_sector.val())){
+                        alert("Select Sector First");
+                    }else if (!(_block.val())){
+                        alert('Select Block First');
+                    }else if (!(_street.val())){
+                        alert('Select Street First');
+                    }else if (!(_plot.val())){
+                        alert('Select Plot First');
+                    }else if (!(_sale_code.val())){
+                        alert('Enter Sale Code First');
+                    }else if (!(_discount.val())){
+                        alert('Enter Discount First');
+                    }else if (!(_extra_charges.val())){
+                        alert('Enter Extra Charges First');
+                    }else if (!(_total_price.val())){
+                        alert('Enter Total Price First');
+                    }else if (!(_payment.val())){
+                        alert('Select Payment Type First');
+                    }else if (!(_description.val())){
+                        alert('Enter Description First');
+                    }else{
+                        $('#step1').toggle();
+                        $('#step2').toggle();
+                        $('#s2').toggleClass('active');
+                        $.ajax({
+                            url:"{{route('memberprofiles.list')}}",
+                            type:"POST",
+                            data:{
+                                _token: '{{csrf_token()}}'
+                            },
+                            success:function(data){
+                                _memberprofile.empty();
+                                _memberprofile.append('<option name="memberprofile_code" value="">choose member</option>');
+                                data.memberprofile.forEach(function (member){
+                                    _memberprofile.append('<option value="'+member.code+'">'+member.name+'</option>');
+                                })
+                            },
+                            error: function (data, textStatus, errorThrown) {
+                                console.log(data);
+                            },
+                        })
+                    }
+
+
+
 
                 })
 

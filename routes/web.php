@@ -206,7 +206,7 @@ Route::put('memberprofiles/restore/{memberProfile}',[\App\Http\Controllers\Membe
 Route::get('memberprofiles/{memberProfile}/details',[\App\Http\Controllers\Members\MemberProfileController::class,'show'])->middleware('permission:show member profiles')->name('memberprofiles.show');
 Route::post('memberprofileslist',[\App\Http\Controllers\Members\MemberProfileController::class,'memberProfileList'])->name('memberprofiles.list');
 Route::post('dealerprofileslist',[\App\Http\Controllers\Members\MemberProfileController::class,'dealerProfileList'])->name('dealerprofiles.list');
-Route::post('memberprofiledetails',[\App\Http\Controllers\Members\MemberProfileController::class,'memberProfileDetails'])->name('memberprofiledetails');
+Route::post('memberprofiledetails',[\App\Http\Controllers\Members\MemberProfileController::class,'memberProfileDetails'])->name('memberprofile.details');
 //for MemberShips
 Route::get('memberships',[\App\Http\Controllers\Members\MemberShipController::class,'index'])->middleware('permission:view memberships')->name('memberships.index');
 Route::get('memberships/create',[\App\Http\Controllers\Members\MemberShipController::class,'create'])->middleware('permission:create memberships')->name('memberships.create');
