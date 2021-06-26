@@ -32,7 +32,7 @@ class MemberProfileController extends Controller
             'memberProfile' => $memberProfile
         ]);
     }
-
+//for Membership
     public function memberProfileList(){
         $society_code=$_POST['society_code'];
         $memberProfile=memberProfile::withTrashed()->get();
@@ -272,5 +272,27 @@ class MemberProfileController extends Controller
     {
         $memberProfile->delete();
         return redirect()->route('memberprofiles.index');
+    }
+
+    public function memberList(){
+        $society_code=$_POST['society_code'];
+        $memberProfile=MemberProfile::withTrashed()->get();
+        $memberShip=MemberShip::where('society_code',$society_code)
+            ->get();
+        $memberShip_array=array();
+        foreach ($memberShip as $ms){
+            $memberShip_array[$ms->memberprofile_code]=$ms;
+        }
+        $x=0;
+        $memberProfile_array=array();
+        foreach ($memberProfile as $mp){
+            if (array_key_exists( $mp->code ,$memberShip_array ) ){
+                $memberProfile_array[$x]=$mp;
+                $x++;
+            }
+        }
+        return response()->json([
+            'memberProfiles' => $memberProfile_array
+        ]);
     }
 }

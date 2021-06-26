@@ -248,9 +248,6 @@
                             <div class="col-sm-6">
                                 <label>Payment</label>
                                 <div class="form-group ml-4">
-                                    <input type="radio" name="payment"  value="default" class="form-check-input" hidden="">
-                                </div>
-                                <div class="form-group ml-4">
                                     <input type="radio" name="payment"  value="cash_price" class="form-check-input" >
                                     <label for="payment" class="form-check-label">Cash Price</label>
                                 </div>
@@ -287,9 +284,32 @@
                     </div>
 
                     <div id="step2">
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Sector</label>
+                                    <select name="memberprofile_code" id="memberprofile" class="form-control">
+                                        <option value="" name="memberprofile_code">Select Member Profile</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <table class="table table-bordered" id="memberdetail">
+
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="row">
                             <div class="col-sm-6">
                                 <input type="submit" class="btn btn-info text-white bg-success" value="Previous" name="step1">
+                                <input type="submit" class="btn btn-info text-white bg-success" value="Next" name="step2">
                             </div>
                         </div>
                     </div>
@@ -322,6 +342,7 @@
                 var inhensivefeature_check='';
                 var society_code;
                 var plot_id;
+                var memberProfile_array;
                 //selector
                 var _project=$('#project');
                 var _society=$('#society');
@@ -385,6 +406,7 @@
                             _token: '{{csrf_token()}}'
                         },
                         success: function (data) {
+                            society_code=_society.val();
                             _sector.empty();
                             _sector.append('<option value="">choose sector</option>');
                             data.sectors.forEach(function (sector){
@@ -561,9 +583,8 @@
                 })
 
                 _step1.click(function (e) {
-                    alert(_payment.val())
                     e.preventDefault();
-                    if (!(_project.val())){
+                    /*if (!(_project.val())){
                         alert("Select Project First");
                     }else if (!(_society.val())) {
                         alert("Select Society First");
@@ -583,24 +604,26 @@
                         alert('Enter Extra Charges First');
                     }else if (!(_total_price.val())){
                         alert('Enter Total Price First');
-                    }else if (!(_payment.val())){
+                    }else if (!(payment_check)){
                         alert('Select Payment Type First');
                     }else if (!(_description.val())){
                         alert('Enter Description First');
-                    }else{
+                    }else{*/
                         $('#step1').toggle();
                         $('#step2').toggle();
                         $('#s2').toggleClass('active');
                         $.ajax({
-                            url:"{{route('memberprofiles.list')}}",
+                            url:"{{route('members.list')}}",
                             type:"POST",
                             data:{
-                                _token: '{{csrf_token()}}'
+                                _token: '{{csrf_token()}}',
+                                society_code: society_code
                             },
                             success:function(data){
                                 _memberprofile.empty();
-                                _memberprofile.append('<option name="memberprofile_code" value="">choose member</option>');
-                                data.memberprofile.forEach(function (member){
+                                _memberprofile.append('<option name="memberprofile_code" value="">Select Member Profile</option>');
+                                memberProfile_array=data.memberProfiles;
+                                data.memberProfiles.forEach(function (member){
                                     _memberprofile.append('<option value="'+member.code+'">'+member.name+'</option>');
                                 })
                             },
@@ -608,12 +631,21 @@
                                 console.log(data);
                             },
                         })
-                    }
-
-
-
-
+                    /*}*/
                 })
+
+                _memberprofile.change(function (e){
+                    customer_id=this.value;
+                    _memberdetail.show();
+                    alert(memberProfile_array[0].name)
+                    memberProfile_array.forEach(function (member){
+                        var src='../storage/memberprofile/'+member.code+'/'+member.picture;
+                        _memberdetail.append('<tr><td><h5>Name</h5></td><td>'+member.name+'</td><td><h5>Membership Code</h5></td><td>'+data.membership);
+                        _memberdetail.append('<tr><td><h5>Image</h5></td><td colspan="3"><img src="'+src+'" height="150px" width="150px"></td></tr>');
+                    })
+                })
+
+
 
                 $('#save').click(function (event){
                     if ($('#name').val()=='' ){

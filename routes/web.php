@@ -207,6 +207,7 @@ Route::get('memberprofiles/{memberProfile}/details',[\App\Http\Controllers\Membe
 Route::post('memberprofileslist',[\App\Http\Controllers\Members\MemberProfileController::class,'memberProfileList'])->name('memberprofiles.list');
 Route::post('dealerprofileslist',[\App\Http\Controllers\Members\MemberProfileController::class,'dealerProfileList'])->name('dealerprofiles.list');
 Route::post('memberprofiledetails',[\App\Http\Controllers\Members\MemberProfileController::class,'memberProfileDetails'])->name('memberprofile.details');
+Route::post('memberlist',[\App\Http\Controllers\Members\MemberProfileController::class,'memberList'])->name('members.list');
 //for MemberShips
 Route::get('memberships',[\App\Http\Controllers\Members\MemberShipController::class,'index'])->middleware('permission:view memberships')->name('memberships.index');
 Route::get('memberships/create',[\App\Http\Controllers\Members\MemberShipController::class,'create'])->middleware('permission:create memberships')->name('memberships.create');
