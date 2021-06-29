@@ -291,8 +291,22 @@ class MemberProfileController extends Controller
                 $x++;
             }
         }
+        $y=0;
+        $memberShip_arr=array();
+        foreach ($memberShip as $ms){
+            $memberShip_arr[$y]=$ms;
+            $y++;
+        }
         return response()->json([
-            'memberProfiles' => $memberProfile_array
+            'memberProfiles' => $memberProfile_array,
+            'memberShips' => $memberShip_arr
+        ]);
+    }
+
+    public function nomineeList(){
+        $memberProfile=MemberProfile::all();
+        return response()->json([
+            'memberProfiles' => $memberProfile
         ]);
     }
 }

@@ -288,20 +288,39 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label>Sector</label>
+                                    <label>Member</label>
                                     <select name="memberprofile_code" id="memberprofile" class="form-control">
                                         <option value="" name="memberprofile_code">Select Member Profile</option>
                                     </select>
                                 </div>
                             </div>
 
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <table class="table table-bordered" id="memberdetail">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Nominee</label>
+                                    <select name="nominee_code" id="nomineeprofile" class="form-control">
+                                        <option value="" name="nominee_code">Select Member Profile First</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
 
-                                        </table>
-                                    </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <table class="table table-bordered" id="memberdetail">
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <table class="table table-bordered" id="nomineedetail">
+
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -343,6 +362,9 @@
                 var society_code;
                 var plot_id;
                 var memberProfile_array;
+                var memberShip_array;
+                var nominee_id;
+                var nomineeProfile_array;
                 //selector
                 var _project=$('#project');
                 var _society=$('#society');
@@ -355,6 +377,8 @@
                 var _description=$('#description');
                 var _memberprofile=$('#memberprofile');
                 var _memberdetail=$('#memberdetail');
+                var _nomineeprofile=$('#nomineeprofile');
+                var _nomineedetail=$('#nomineedetail');
                 var _installmentplan=$('#installmentplan');
                 var _installmentplandetail=$('#installmentplandetail');
                 var _installment=$('#installment');
@@ -623,6 +647,7 @@
                                 _memberprofile.empty();
                                 _memberprofile.append('<option name="memberprofile_code" value="">Select Member Profile</option>');
                                 memberProfile_array=data.memberProfiles;
+                                memberShip_array=data.memberShips;
                                 data.memberProfiles.forEach(function (member){
                                     _memberprofile.append('<option value="'+member.code+'">'+member.name+'</option>');
                                 })
@@ -637,11 +662,55 @@
                 _memberprofile.change(function (e){
                     customer_id=this.value;
                     _memberdetail.show();
-                    alert(memberProfile_array[0].name)
+                    _memberdetail.empty();
+                    var temp;
+                    memberShip_array.forEach(function (memberShip){
+                        if (memberShip.memberprofile_code==customer_id){
+                            temp=memberShip.code;
+                        }
+                    });
                     memberProfile_array.forEach(function (member){
-                        var src='../storage/memberprofile/'+member.code+'/'+member.picture;
-                        _memberdetail.append('<tr><td><h5>Name</h5></td><td>'+member.name+'</td><td><h5>Membership Code</h5></td><td>'+data.membership);
-                        _memberdetail.append('<tr><td><h5>Image</h5></td><td colspan="3"><img src="'+src+'" height="150px" width="150px"></td></tr>');
+                        if (customer_id==member.code){
+                            var src='../storage/memberprofile/'+member.code+'/'+member.picture;
+                            _memberdetail.append('<tr><td colspan="4" class="text-center"><h3>Member Details</h3></td></tr>')
+                            _memberdetail.append('<tr><td><h5>Name</h5></td><td>'+member.name+'</td><td><h5>Membership Code</h5></td><td>' + temp + '</td></tr>');
+                            _memberdetail.append('<tr><td><h5>Image</h5></td><td><img src="'+src+'" height="150px" width="150px"></td><td><h5>CNIC#</h5></td><td>' + member.cnic + '</td></tr>');
+                        }
+                    })
+
+                    $.ajax({
+                        url:"{{route('nominee.list')}}",
+                        type:"POST",
+                        data:{
+                            _token: '{{csrf_token()}}',
+                        },
+                        success:function(data){
+                            _nomineeprofile.empty();
+                            _nomineeprofile.append('<option name="memberprofile_code" value="">Select Nominee Profile</option>');
+                            nomineeProfile_array=data.memberProfiles;
+                            data.memberProfiles.forEach(function (member){
+                                if (customer_id!=member.code){
+                                    _nomineeprofile.append('<option value="'+member.code+'">'+member.name+'</option>');
+                                }
+                            })
+                        },
+                        error: function (data, textStatus, errorThrown) {
+                            console.log(data);
+                        },
+                    })
+                })
+
+                _nomineeprofile.change(function (e){
+                    nominee_id=this.value;
+                    _nomineedetail.show();
+                    _nomineedetail.empty();
+                    nomineeProfile_array.forEach(function (member){
+                        if (nominee_id==member.code){
+                            var src='../storage/memberprofile/'+member.code+'/'+member.picture;
+                            _nomineedetail.append('<tr><td colspan="4" class="text-center"><h3>Nominee Details</h3></td></tr>')
+                            _nomineedetail.append('<tr><td><h5>Name</h5></td><td>'+member.name+'</td><td><h5>Member Profile Code</h5></td><td>' + member.code + '</td></tr>');
+                            _nomineedetail.append('<tr><td><h5>Image</h5></td><td><img src="'+src+'" height="150px" width="150px"></td><td><h5>CNIC#</h5></td><td>' + member.cnic + '</td></tr>');
+                        }
                     })
                 })
 
