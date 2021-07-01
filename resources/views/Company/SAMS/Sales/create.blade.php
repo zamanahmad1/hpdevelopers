@@ -138,7 +138,7 @@
             <div class="card-header">
                 <h3 class="card-title">Create Sale Registration Form</h3>
             </div>
-            <div class="steps-container">
+            <div class="steps-container mt-4">
                 <ul class="steps">
                     <li data-step="1" id="s1" class="active"> <span class="step">1</span> <span class="title">Details of Plot</span> </li>
                     <li data-step="2" id="s2"> <span class="step">2</span> <span class="title">Member Details</span> </li>
@@ -332,6 +332,54 @@
                             </div>
                         </div>
                     </div>
+
+                    <div id="step3">
+                        <div class="row" id="installment">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Installment Plan</label>
+                                    <select name="installmentplan_code" id="installmentplan" class="form-control">
+                                        <option value="" name="installmentplan_code">Select Installment Plan</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Installment Start Date</label>
+                                    <input type="date" class="form-control" name="start_date">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <table class="table table-bordered" id="installmentplandetail">
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <input type="submit" class="btn btn-info text-white bg-success" value="Previous" name="step2">
+                                <input type="submit" class="btn btn-info text-white bg-success" value="Next" name="step3">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="step4">
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <input type="submit" class="btn btn-info text-white bg-success" value="Previous" name="step3">
+                                <input type="submit" class="btn btn-info text-white bg-success" value="Next" name="step5">
+                            </div>
+                        </div>
+                    </div>
+
                 </form>
                 <!-- /.card-body -->
             </div>
@@ -714,6 +762,92 @@
                     })
                 })
 
+                _step2.click(function (e){
+                    e.preventDefault();
+                    /*if(!(_memberprofile.val())){
+                        alert('Select Member Profile First');
+                    }else if (!(_nomineeprofile.val())){
+                        alert('Select Nominee Profile First');
+                    }else{*/
+                        $('#step2').toggle();
+                        $('#step3').toggle();
+                        $('#s3').toggleClass('active');
+                    if (payment_check=='installment_price'){
+                        $.ajax({
+                            url:"{{route('installmentplans.list')}}",
+                            type:"POST",
+                            data:{
+                                _token: '{{csrf_token()}}'
+                            },
+                            success:function(data){
+                                _installment.show();
+                                _installmentplan.empty();
+                                _installmentplan.append('<option value="">choose installment plan</option>');
+                                data.installmentPlan.forEach(function (installmentPlan){
+                                    _installmentplan.append('<option value="'+installmentPlan.code+'">'+installmentPlan.name+'</option>');
+                                })
+                            },
+                            error: function (data, textStatus, errorThrown) {
+                                console.log(data);
+                            },
+                        })
+                    }
+                    else {
+                        _installment.hide();
+                        _installmentplandetail.empty();
+                        _installmentplandetail.append('<tr><td colspan="2"><h5>Total Price</h5></td><td colspan="2">'+_total_price.val()+'</td></tr>');
+                    }
+                   // }
+                });
+
+                _installmentplan.change(function (e){
+                    _memberdetail.show();
+                    $.ajax({
+                        url:"{{route('installmentplans.detail')}}",
+                        type:"POST",
+                        data:{
+                            code:_installmentplan.val(),
+                            _token: '{{csrf_token()}}'
+                        },
+                        success:function(data){
+                            _installmentplandetail.empty();
+                            data.installmentPlan.forEach(function (installmentPlan){
+                                var id=0;
+                                var d=new Date();
+                                var noqi=installmentPlan.months/3;
+                                var nomi=installmentPlan.months/6;
+                                var noyi=installmentPlan.months/12;
+                                _installmentplandetail.append('<tr><td><h5>Name</h5></td><td>'+installmentPlan.name+'</td><td><h5>Installment Plan Code</h5></td><td>'+installmentPlan.code+'</td></tr>');
+                                _installmentplandetail.append('<tr><th><h3>id</h3></th><th colspan="2"><h3>Installment</h3></th><th><h3>Price</h3></th></tr>');
+                                _installmentplandetail.append('<tr><td>'+(++id)+'</td><td colspan="2"><h5>Booking</h5></td><td colspan="2">'+((_total_price.val()/100)*installmentPlan.booking)+'</td></tr>');
+                                _installmentplandetail.append('<tr><td>'+(++id)+'</td><td colspan="2"><h5>Confirmation</h5></td><td colspan="2">'+((_total_price.val()/100)*installmentPlan.confirmation)+'</td></tr>');
+                                for (var x=1; x<=installmentPlan.months; x++){
+                                    _installmentplandetail.append('<tr><td>'+(++id)+'</td><td colspan="2"><h5> Monthly Installment '+x+'</h5></td><td colspan="2">'+((_total_price.val()/100)*installmentPlan.monthly_installment)+'</td></tr>')
+                                    if(x%3==0 && installmentPlan.quarterly_installment>0){
+                                        _installmentplandetail.append('<tr><td>'+(++id)+'</td><td colspan="2"><h5> Quaterly Installment '+x/3+'</h5></td><td colspan="2">'+((_total_price.val()/100)*(installmentPlan.quarterly_installment/noqi))+'</td></tr>')
+                                    }
+                                    if(x%6==0 && (x/2)/2!=0 && installmentPlan.midyear_installment){
+                                        _installmentplandetail.append('<tr><td>'+(++id)+'</td><td colspan="2"><h5> Mid Year Installment '+x/3+'</h5></td><td colspan="2">'+((_total_price.val()/100)*(installmentPlan.midyear_installment/nomi))+'</td></tr>')
+                                    }
+                                    if(x%12==0 && installmentPlan.yearly_installment){
+                                        _installmentplandetail.append('<tr><td>'+(++id)+'</td><td colspan="2"><h5> Yearly Installment '+x/3+'</h5></td><td colspan="2">'+((_total_price.val()/100)*(installmentPlan.yearly_installment/noyi))+'</td></tr>')
+                                    }
+                                }
+                                _installmentplandetail.append('<tr><td>'+(++id)+'</td><td colspan="2"><h5>Allocation</h5></td><td colspan="2">'+((_total_price.val()/100)*installmentPlan.allocation)+'</td></tr>');
+                            })
+                        },
+                        error: function (data, textStatus, errorThrown) {
+                            console.log(data);
+                        },
+                    })
+                });
+
+                _step3.click(function (e){
+                    e.preventDefault();
+                    $('#step3').toggle();
+                    $('#step4').toggle();
+                    $('#s4').toggleClass('active');
+                })
 
 
                 $('#save').click(function (event){

@@ -132,4 +132,20 @@ class InstallmentController extends Controller
         $installmentPlan->delete();
         return redirect()->route('installmentplans.index');
     }
+
+    public function installmentPlanList(){
+        $installmentPlan=InstallmentPlan::all();
+        return response()->json([
+            'installmentPlan' => $installmentPlan,
+        ]);
+    }
+
+    public function installmentPlanDetail(){
+        $code=$_POST['code'];
+        $installmentPlan=InstallmentPlan::where('code',$code)
+            ->get();
+        return response()->json([
+            'installmentPlan' => $installmentPlan
+        ]);
+    }
 }
