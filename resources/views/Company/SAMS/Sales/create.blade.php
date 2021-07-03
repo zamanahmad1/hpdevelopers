@@ -371,6 +371,23 @@
                     </div>
 
                     <div id="step4">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Member</label>
+                                    <select name="dealerprofile_code" id="dealerprofile" class="form-control">
+                                        <option value="" name="dealerprofile_code">Select Member Profile</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Dealer Rebate</label>
+                                    <input type="number" name="rebate" class="form-control" step="0.01">
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="row">
                             <div class="col-sm-6">
@@ -847,6 +864,7 @@
                     $('#step3').toggle();
                     $('#step4').toggle();
                     $('#s4').toggleClass('active');
+                    
                 })
 
 
