@@ -276,7 +276,7 @@ class MemberProfileController extends Controller
 
     public function memberList(){
         $society_code=$_POST['society_code'];
-        $memberProfile=MemberProfile::withTrashed()->get();
+        $memberProfile=MemberProfile::all();
         $memberShip=MemberShip::where('society_code',$society_code)
             ->get();
         $memberShip_array=array();
@@ -307,6 +307,35 @@ class MemberProfileController extends Controller
         $memberProfile=MemberProfile::all();
         return response()->json([
             'memberProfiles' => $memberProfile
+        ]);
+    }
+
+    public function dealerList(){
+        $society_code=$_POST['society_code'];
+        $dealerProfile=MemberProfile::all();
+        $dealerShip=DealerShip::where('society_code',$society_code)
+            ->get();
+        $dealerShip_array=array();
+        foreach ($dealerShip as $ds){
+            $dealerShip_array[$ds->memberprofile_code]=$ds;
+        }
+        $x=0;
+        $dealerProfile_array=array();
+        foreach ($dealerProfile as $dp){
+            if (array_key_exists( $dp->code ,$dealerShip_array ) ){
+                $dealerProfile_array[$x]=$dp;
+                $x++;
+            }
+        }
+        $y=0;
+        $dealerShip_arr=array();
+        foreach ($dealerShip as $ds){
+            $dealerShip_arr[$y]=$ds;
+            $y++;
+        }
+        return response()->json([
+            'dealerProfiles' => $dealerProfile_array,
+            'dealerShips' => $dealerShip_arr
         ]);
     }
 }

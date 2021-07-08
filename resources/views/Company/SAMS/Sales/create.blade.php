@@ -374,7 +374,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label>Member</label>
+                                    <label>Dealer</label>
                                     <select name="dealerprofile_code" id="dealerprofile" class="form-control">
                                         <option value="" name="dealerprofile_code">Select Member Profile</option>
                                     </select>
@@ -390,9 +390,47 @@
                         </div>
 
                         <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <table class="table table-bordered" id="dealerdetail">
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
                             <div class="col-sm-6">
                                 <input type="submit" class="btn btn-info text-white bg-success" value="Previous" name="step3">
-                                <input type="submit" class="btn btn-info text-white bg-success" value="Next" name="step5">
+                                <input type="submit" class="btn btn-info text-white bg-success" value="Next" name="step4">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="step5">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <th class="text-center text-white bg-primary">
+                                                <h3>Plot Information</h3>
+                                            </th>
+                                            <th class="text-center text-white bg-primary">
+                                                <h3>Customer Information</h3>
+                                            </th>
+                                        </tr>
+
+                                        <tr>
+                                            <td id="plot_confirmation">
+
+                                            </td>
+                                            <td id="customer_confirmation">
+
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -426,10 +464,13 @@
                 var inhensivefeature_check='';
                 var society_code;
                 var plot_id;
+                var plot_details;
                 var memberProfile_array;
                 var memberShip_array;
                 var nominee_id;
                 var nomineeProfile_array;
+                var dealerProfile_array;
+                var dealerShip_array;
                 //selector
                 var _project=$('#project');
                 var _society=$('#society');
@@ -559,6 +600,7 @@
                             _token: '{{csrf_token()}}'
                         },
                         success: function (data) {
+                            plot_details=data;
                             _plot.empty();
                             _plot.append('<option name="plot_code" value="">choose plot</option>');
                             data.plots.forEach(function (plot){
@@ -864,8 +906,52 @@
                     $('#step3').toggle();
                     $('#step4').toggle();
                     $('#s4').toggleClass('active');
-                    
+
+                    $.ajax({
+                        url:"{{route('dealers.list')}}",
+                        type:"POST",
+                        data:{
+                            _token: '{{csrf_token()}}',
+                            society_code: society_code
+                        },
+                        success:function(data){
+                            _dealerprofile.empty();
+                            _dealerprofile.append('<option name="memberprofile_code" value="">Select Dealer Profile</option>');
+                            dealerProfile_array=data.dealerProfiles;
+                            dealerShip_array=data.dealerShips;
+                            data.dealerProfiles.forEach(function (dealer){
+                                _dealerprofile.append('<option value="'+dealer.code+'">'+dealer.name+'</option>');
+                            })
+                        },
+                        error: function (data, textStatus, errorThrown) {
+                            console.log(data);
+                        },
+                    })
                 })
+
+                _step4.click(function (e){
+                    e.preventDefault();
+                    $('#step4').toggle();
+                    $('#step5').toggle();
+                    $('#s5').toggleClass('active');
+                    _plot_confirmation.empty();
+                    _customer_verification.empty();
+
+                    _plot_confirmation.append('<tr><td colspan="2">Property Name</td><td>'+plot_details.name+'</td></tr>');
+                    _plot_confirmation.append('<tr><td colspan="2">Property Area</td><td>'+plot_details.area+'</td></tr>');
+                    _plot_confirmation.append('<tr><td colspan="2">Property Category</td><td>'+plot_details.category+'</td></tr>');
+                    _plot_confirmation.append('<tr><td colspan="2">Property Size</td><td>'+plot_details.size+'</td></tr>');
+
+                    memberProfile_array.forEach(function (customer){
+                        if (_memberprofile.val()==customer.code){
+                            _customer_verification.append('<tr><td colspan="2">Customer Name</td><td>'+customer.name+'</td></tr>');
+                            _customer_verification.append('<tr><td colspan="2">Father Name</td><td>'+customer.father_name+'</td></tr>');
+                            _customer_verification.append('<tr><td colspan="2">Cnic No</td><td>'+customer.cnic+'</td></tr>');
+                            _customer_verification.append('<tr><td colspan="2">Address</td><td>'+customer.address+'</td></tr>');
+                        }
+                    })
+
+                });
 
 
                 $('#save').click(function (event){
